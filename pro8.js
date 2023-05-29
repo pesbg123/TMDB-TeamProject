@@ -15,7 +15,6 @@ function showMovieList() {
     .then((response) => response.json())
     .then((data) => {
       let rows = data['results'];
-      console.log(rows);
       const movieCardBox = document.getElementById('cards-box');
       movieCardBox.innerHTML = '';
       rows.forEach((item) => {
@@ -48,3 +47,65 @@ function clickCard(movieId) {
 }
 
 showMovieList();
+
+function searchMovie() {
+  const searchBox = document.getElementById('search-box').value;
+  const movieCardBox = document.getElementById('cards-box');
+  movieCardBox.innerHTML = '';
+
+  fetch(
+    `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1`,
+    options
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      let results = data['results'];
+      if (searchBox.length === 0) {
+        alert('한글자 이상 적어주세요');
+      }
+      const filteredResults = results
+        .map((item) => ({
+          movieTitle: item['original_title'],
+          movieDesc: item['overview'],
+          movieRate: item['vote_average'],
+          movieImg: item['poster_path'],
+          movieId: item['id'],
+        }))
+        .filter((movie) => movie.movieTitle.includes(searchBox));
+      if (filteredResults.length === 0) {
+        alert('일치하는 검색결과가 없습니다');
+        window.location.reload();
+      }
+      filteredResults.forEach((movie) => {
+        let temp_html = `<div class="col" style="color: white">
+                           <div class="card h-100" style="background-color: rgb(58, 58, 57)">
+                               <img src="https://image.tmdb.org/t/p/w500${movie.movieImg}"
+                                  class="card-img-top" />
+                               <div class="card-body">
+                                  <h5 class="card-title">${movie.movieTitle}</h5>
+                                  <p class="card-text">${movie.movieDesc}</p>
+                                  <p>⭐${movie.movieRate}</p>
+                              </div>
+                          </div>
+                      </div>`;
+        movieCardBox.insertAdjacentHTML('beforeend', temp_html);
+        const clickCardBox = movieCardBox.lastElementChild;
+        clickCardBox.addEventListener('click', () => clickCard(movie.movieId));
+      });
+    });
+}
+
+const clickButton = document.getElementById('click-btn');
+clickButton.addEventListener('click', searchMovie);
+
+const searchBox = document.getElementById('search-box');
+searchBox.addEventListener('keypress', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    searchMovie();
+  }
+});
+
+const main = () => {
+  window.location.reload();
+};
