@@ -77,8 +77,8 @@ function searchMovie() {
         window.location.reload();
       }
       filteredResults.forEach((movie) => {
-        let temp_html = `<div class="col" style="color: white">
-                           <div class="card h-100" style="background-color: rgb(58, 58, 57)">
+        let temp_html = `<div class="col">
+                           <div class="card h-100">
                                <img src="https://image.tmdb.org/t/p/w500${movie.movieImg}"
                                   class="card-img-top" />
                                <div class="card-body">
