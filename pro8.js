@@ -44,7 +44,7 @@ function showMovieList() {
 }
 
 function clickCard(movieId) {
-  alert(`id = ${movieId}`);
+  alert(`id: ${movieId}`);
 }
 
 showMovieList();
@@ -72,7 +72,9 @@ function searchMovie() {
           movieImg: item['poster_path'],
           movieId: item['id'],
         }))
-        .filter((movie) => movie.movieTitle.includes(searchBox));
+        .filter((movie) =>
+          movie.movieTitle.toLowerCase().includes(searchBox.toLowerCase())
+        );
       if (filteredResults.length === 0) {
         alert('일치하는 검색결과가 없습니다');
         window.location.reload();
