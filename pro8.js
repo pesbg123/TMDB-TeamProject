@@ -14,6 +14,7 @@ function showMovieList() {
   )
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       let rows = data['results'];
       const movieCardBox = document.getElementById('cards-box');
       movieCardBox.innerHTML = '';
