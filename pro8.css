@@ -72,12 +72,13 @@ body {
   margin-left: 77%;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  background-color: gray;
+  background-color: rgb(0, 0, 0);
   color: white;
+  border: none;
 }
 
 #search-box::placeholder {
-  color: rgb(56, 56, 56);
+  color: rgb(109, 109, 109);
 }
 
 .search-btn {
@@ -90,4 +91,9 @@ body {
   background-color: black;
   color: white;
   border: none;
+}
+
+.search-btn:hover {
+  box-shadow: 0 80px 0 0 rgba(255, 255, 255, 0.25) inset,
+    0 -80px 0 0 rgba(255, 255, 255, 0.25) inset;
 }
