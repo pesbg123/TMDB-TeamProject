@@ -58,7 +58,7 @@ function searchMovie() {
     .then((data) => {
       let results = data['results'];
       if (searchBox.length === 0) {
-        alert('한글자 이상 적어주세요');
+        alert('한 글자 미만 버튼 클릭 금지');
       }
       const filteredResults = results
         .map((item) => ({
@@ -75,7 +75,7 @@ function searchMovie() {
             .includes(searchBox.replace(/ /g, '').toLowerCase())
         );
       if (filteredResults.length === 0) {
-        alert('일치하는 검색결과가 없습니다');
+        alert('그런 영화 없거나 이상한 걸 입력한듯?');
         window.location.reload();
       }
       filteredResults.forEach((movie) => {
