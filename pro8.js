@@ -23,13 +23,15 @@ function showMovieList() {
         let movieId = item['id'];
 
         let temp_html = `<div class="col" style="color: white">
-                           <div class="card h-100" id="cardPost-${movieId}" style="background-color: rgb(58, 58, 57)">
+                           <div class="solo-card" id="cardPost-${movieId}" style="background-color: rgb(58, 58, 57)">
                                <img src="https://image.tmdb.org/t/p/w500${movieImg}"
                                   class="card-img-top"/>
                                <div class="card-body">
-                                  <h5 class="card-title">${movieTitle}</h5>
+                                  <h2 class="card-title">${movieTitle}</h5>
+                                  <p class="${textColor(
+                                    movieRate
+                                  )}">${movieRate}</p>
                                   <p class="card-text">${movieDesc}</p>
-                                  <p>⭐${movieRate}</p>
                               </div>
                           </div>
                       </div>`;
@@ -111,3 +113,13 @@ searchBox.addEventListener('keypress', (event) => {
 const main = () => {
   window.location.reload();
 };
+
+function textColor(rate) {
+  if (rate >= 8) {
+    return 'green';
+  } else if (rate >= 5) {
+    return 'orange';
+  } else {
+    return 'red';
+  }
+}
