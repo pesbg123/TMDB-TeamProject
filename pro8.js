@@ -80,13 +80,21 @@ function searchMovie() {
       }
       filteredResults.forEach((movie) => {
         let temp_html = `<div class="col" style="color: white">
-                            <div class="card h-100" id="cardPost-${movie.movieId}" style="background-color: rgb(58, 58, 57)">
-                                <img src="https://image.tmdb.org/t/p/w500${movie.movieImg}"
+                            <div class="solo-card" id="cardPost-${
+                              movie.movieId
+                            }" style="background-color: rgb(58, 58, 57)">
+                                <img src="https://image.tmdb.org/t/p/w500${
+                                  movie.movieImg
+                                }"
                                   class="card-img-top"/>
                                 <div class="card-body">
-                                  <h5 class="card-title">${movie.movieTitle}</h5>
+                                  <h2 class="card-title">${
+                                    movie.movieTitle
+                                  }</h5>
+                                  <p class="${textColor(movie.movieRate)}">${
+          movie.movieRate
+        }</p>
                                   <p class="card-text">${movie.movieDesc}</p>
-                                  <p>⭐${movie.movieRate}</p>
                               </div>
                           </div>
                       </div>`;
