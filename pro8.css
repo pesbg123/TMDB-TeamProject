@@ -20,20 +20,7 @@
 }
 
 .mycards {
-  margin: 20px auto 0px auto;
+  margin: auto auto auto auto;
   width: 95%;
   max-width: 1200px;
-  margin-top: 10%;
-}
-
-#search-box {
-  width: 500px;
-  margin-left: auto;
-}
-
-.search-post {
-  display: flex;
-}
-
-.click-btn {
 }

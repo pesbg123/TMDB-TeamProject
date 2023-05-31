@@ -22,16 +22,14 @@ function showMovieList() {
         let movieImg = item['poster_path'];
         let movieId = item['id'];
 
-        let temp_html = `<div class="mycards">
-                           <div class="col" style="color: white">
-                              <div class="card h-100" id="cardPost-${movieId}" style="background-color: rgb(58, 58, 57)">
-                                  <img src="https://image.tmdb.org/t/p/w500${movieImg}"
-                                      class="card-img-top"/>
-                                  <div class="card-body">
-                                      <h5 class="card-title">${movieTitle}</h5>
-                                      <p class="card-text">${movieDesc}</p>
-                                      <p>⭐${movieRate}</p>
-                                  </div>
+        let temp_html = `<div class="col" style="color: white">
+                           <div class="card h-100" id="cardPost-${movieId}" style="background-color: rgb(58, 58, 57)">
+                               <img src="https://image.tmdb.org/t/p/w500${movieImg}"
+                                  class="card-img-top"/>
+                               <div class="card-body">
+                                  <h5 class="card-title">${movieTitle}</h5>
+                                  <p class="card-text">${movieDesc}</p>
+                                  <p>⭐${movieRate}</p>
                               </div>
                           </div>
                       </div>`;
