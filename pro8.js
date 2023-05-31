@@ -3,30 +3,27 @@ const options = {
   headers: {
     accept: 'application/json',
     Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NjAwYjljMmY0NzA2MzIzMDdkNTk5Y2E2MDU1YWM4NSIsInN1YiI6IjY0NzM0ZDM0YmUyZDQ5MDBhN2Q2MzgzNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.904cgBblGnOetTZ00BRWJnlIigPpKGEFzmBXQRjeYHk',
+      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlOWJiOTJmNjQ4ZDQxOTExNTVkMTdjOGU0M2YyNWU2OCIsInN1YiI6IjY0NzIxZmM1ZGQ3MzFiMDBjMGJhYWU5MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Y3E-hG7rguBwXeMYwJDAuXRxZp8nBSidYbJb6AFhSf0',
   },
 };
-
+const apiKey =
+  'https://api.themoviedb.org/3/movie/popular?api_key=e9bb92f648d4191155d17c8e43f25e68&language=ko';
 function showMovieList() {
-  fetch(
-    'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1',
-    options
-  )
+  fetch(apiKey, options)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       let rows = data['results'];
       const movieCardBox = document.getElementById('cards-box');
-      movieCardBox.innerHTML = '';
+      movieCardBox.textContent = '';
       rows.forEach((item) => {
-        let movieTitle = item['original_title'];
+        let movieTitle = item['title'];
         let movieDesc = item['overview'];
         let movieRate = item['vote_average'];
         let movieImg = item['poster_path'];
         let movieId = item['id'];
 
         let temp_html = `<div class="col" style="color: white">
-                           <div class="card h-100" style="background-color: rgb(58, 58, 57)">
+                           <div class="card h-100" id="cardPost-${movieId}" style="background-color: rgb(58, 58, 57)">
                                <img src="https://image.tmdb.org/t/p/w500${movieImg}"
                                   class="card-img-top"/>
                                <div class="card-body">
@@ -37,7 +34,7 @@ function showMovieList() {
                           </div>
                       </div>`;
         movieCardBox.insertAdjacentHTML('beforeend', temp_html);
-        const clickCardBox = movieCardBox.lastElementChild;
+        const clickCardBox = document.getElementById(`cardPost-${movieId}`);
         clickCardBox.addEventListener('click', () => clickCard(movieId));
       });
     });
@@ -52,12 +49,9 @@ showMovieList();
 function searchMovie() {
   const searchBox = document.getElementById('search-box').value;
   const movieCardBox = document.getElementById('cards-box');
-  movieCardBox.innerHTML = '';
+  movieCardBox.textContent = '';
 
-  fetch(
-    `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1`,
-    options
-  )
+  fetch(apiKey, options)
     .then((response) => response.json())
     .then((data) => {
       let results = data['results'];
@@ -66,14 +60,17 @@ function searchMovie() {
       }
       const filteredResults = results
         .map((item) => ({
-          movieTitle: item['original_title'],
+          movieTitle: item['title'],
           movieDesc: item['overview'],
           movieRate: item['vote_average'],
           movieImg: item['poster_path'],
           movieId: item['id'],
         }))
         .filter((movie) =>
-          movie.movieTitle.toLowerCase().includes(searchBox.toLowerCase())
+          movie.movieTitle
+            .toLowerCase()
+            .replace(/ /g, '')
+            .includes(searchBox.replace(/ /g, '').toLowerCase())
         );
       if (filteredResults.length === 0) {
         alert('일치하는 검색결과가 없습니다');
@@ -81,9 +78,10 @@ function searchMovie() {
       }
       filteredResults.forEach((movie) => {
         let temp_html = `<div class="col" style="color: white">
-                           <div class="card h-100" style="background-color: rgb(58, 58, 57)">
-                               <img src="https://image.tmdb.org/t/p/w500${movie.movieImg}"/>
-                               <div class="card-body">
+                            <div class="card h-100" id="cardPost-${movie.movieId}" style="background-color: rgb(58, 58, 57)">
+                                <img src="https://image.tmdb.org/t/p/w500${movie.movieImg}"
+                                  class="card-img-top"/>
+                                <div class="card-body">
                                   <h5 class="card-title">${movie.movieTitle}</h5>
                                   <p class="card-text">${movie.movieDesc}</p>
                                   <p>⭐${movie.movieRate}</p>
@@ -91,7 +89,9 @@ function searchMovie() {
                           </div>
                       </div>`;
         movieCardBox.insertAdjacentHTML('beforeend', temp_html);
-        const clickCardBox = movieCardBox.lastElementChild;
+        const clickCardBox = document.getElementById(
+          `cardPost-${movie.movieId}`
+        );
         clickCardBox.addEventListener('click', () => clickCard(movie.movieId));
       });
     });
