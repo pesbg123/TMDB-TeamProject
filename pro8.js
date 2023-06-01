@@ -20,8 +20,6 @@ const TopRated =
   'https://api.themoviedb.org/3/movie/top_rated?api_key=e9bb92f648d4191155d17c8e43f25e68&language=ko';
 const Upcoming =
   'https://api.themoviedb.org/3/movie/upcoming?api_key=e9bb92f648d4191155d17c8e43f25e68&language=ko';
-const allMovie =
-  'https://api.themoviedb.org/3/search/movie?api_key=e9bb92f648d4191155d17c8e43f25e68&language=ko';
 
 // 영화 목록을 TMDB에서 가져온뒤 웹 페이지에 보여주는 역할을 하는 함수입니다.
 function showMovieList() {
