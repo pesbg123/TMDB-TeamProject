@@ -78,7 +78,7 @@ body {
 
 #search-box {
   font-family: 'Cherry Bomb One', cursive;
-  padding: 10px 10px 30px 0px;
+  padding: 20px 10px 20px 0px;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
   background-color: rgb(0, 0, 0);
@@ -87,6 +87,7 @@ body {
   float: right;
   width: 200px; /* 동일한 크기로 설정 */
   position: relative; /* 상대적인 위치 설정 */
+  text-align: center;
 }
 
 #search-box::placeholder {
@@ -108,7 +109,7 @@ body {
   padding-right: 10px;
   color: tomato;
   border: none;
-  height: 59.9px;
+  height: 59.6px;
   float: right;
   position: relative; /* 상대적인 위치 설정 */
   display: flex; /* 내부 요소들을 가로로 정렬하기 위해 flex 설정 */
