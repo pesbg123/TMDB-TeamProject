@@ -29,7 +29,6 @@ body {
   width: 350px;
   margin: 1rem;
   position: relative;
-  border-radius: 5px;
 }
 
 .card-text {
@@ -56,6 +55,7 @@ body {
 
 .card-img-top {
   width: 100%;
+  border-radius: 17px;
 }
 
 .title {
@@ -70,6 +70,10 @@ body {
   width: 95%;
   max-width: 100%;
   display: inline-block;
+}
+
+.solo-card {
+  border-radius: 17px;
 }
 
 #search-box {
