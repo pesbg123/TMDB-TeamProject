@@ -95,7 +95,7 @@ function searchMovie() {
         alert('일치하는 검색 결과가 없습니다'); // api를 사용하여 가져온 데이터들 중 사용자가 검색한 항목이 없는경우 예외처리
         window.location.reload();
       }
-      movieCardBox.textContent = ''; // 기존에 불러왔던 영화카드를 지우기 위해 사용했습니다.
+      movieCardBox.textContent = ''; // movieCardBox안의 text 요소들을 지워주기 위해 사용했습니다.
       filteredResults.forEach((movie) => {
         let temp_html = `<div class="col" style="color: white">
                             <div class="solo-card" id="cardPost-${
