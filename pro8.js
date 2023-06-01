@@ -68,6 +68,7 @@ function clickCard(movieId) {
 // showMovieList() 함수를 호출합니다. 이로써 웹 페이지에 접속하게되면 바로 카드목록을 보여줄 수 있습니다.
 showMovieList();
 
+// popular 카테고리를 클릭하면 popular 영화 데이터들이 나오게 하는 함수
 function showMovieList1() {
   fetch(popular, options)
     .then((response) => response.json())
@@ -106,6 +107,7 @@ function showMovieList1() {
 const popularTab = document.getElementById('popular-category');
 popularTab.addEventListener('click', () => showMovieList1());
 
+// owPlaying 카테고리를 클릭하면 owPlaying 영화 데이터들이 나오게 하는 함수
 function showMovieList2() {
   fetch(NowPlaying, options)
     .then((response) => response.json())
@@ -144,6 +146,7 @@ function showMovieList2() {
 const nowPlayingTab = document.getElementById('nowplaying-category');
 nowPlayingTab.addEventListener('click', () => showMovieList2());
 
+// TopRated 카테고리를 클릭하면 TopRated 영화 데이터들이 나오게 하는 함수
 function showMovieList3() {
   fetch(TopRated, options)
     .then((response) => response.json())
@@ -182,6 +185,7 @@ function showMovieList3() {
 const topRatedTab = document.getElementById('toprate-category');
 topRatedTab.addEventListener('click', () => showMovieList3());
 
+// Upcoming 카테고리를 클릭하면 Upcoming 영화 데이터들이 나오게 하는 함수
 function showMovieList4() {
   fetch(Upcoming, options)
     .then((response) => response.json())
@@ -235,7 +239,7 @@ function searchMovie() {
     .then((data) => {
       let results = data['results'];
       if (results.length === 0) {
-        alert('일치하는 검색 결과가 없습니다');
+        alert('일치하는 검색 결과가 없습니다'); // 예외처리
         window.location.reload();
       } else {
         movieCardBox.textContent = '';
