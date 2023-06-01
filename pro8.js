@@ -12,13 +12,21 @@ const options = {
 
 // TMDB api key도 마찬가지로 apiKey라는 상수에도 할당했습니다.
 // options과 마찬가지로 바뀔 필요가 없다고 생각했기에 const로 선언하였습니다.
-const apiKey =
+const popular =
   'https://api.themoviedb.org/3/movie/popular?api_key=e9bb92f648d4191155d17c8e43f25e68&language=ko';
+const NowPlaying =
+  'https://api.themoviedb.org/3/movie/now_playing?api_key=e9bb92f648d4191155d17c8e43f25e68&language=ko';
+const TopRated =
+  'https://api.themoviedb.org/3/movie/top_rated?api_key=e9bb92f648d4191155d17c8e43f25e68&language=ko';
+const Upcoming =
+  'https://api.themoviedb.org/3/movie/upcoming?api_key=e9bb92f648d4191155d17c8e43f25e68&language=ko';
+const allMovie =
+  'https://api.themoviedb.org/3/search/movie?api_key=e9bb92f648d4191155d17c8e43f25e68&language=ko';
 
 // 영화 목록을 TMDB에서 가져온뒤 웹 페이지에 보여주는 역할을 하는 함수입니다.
 function showMovieList() {
   // fetch 함수를 사용해서 API 요청을 보냅니다.
-  fetch(apiKey, options) // 위에 미리 상수 안에 할당했기때문에 더 효율적이라고 느꼈습니다.
+  fetch(popular, options) // 위에 미리 상수 안에 할당했기때문에 더 효율적이라고 느꼈습니다.
     .then((response) => response.json()) // 데이터를 자바스크립트에서 사용하기 위해 JSON형식으로 변환시켰습니다.
     .then((data) => {
       let rows = data['results'];
@@ -62,66 +70,206 @@ function clickCard(movieId) {
 // showMovieList() 함수를 호출합니다. 이로써 웹 페이지에 접속하게되면 바로 카드목록을 보여줄 수 있습니다.
 showMovieList();
 
+function showMovieList1() {
+  fetch(popular, options)
+    .then((response) => response.json())
+    .then((data) => {
+      let rows = data['results'];
+      const movieCardBox = document.getElementById('cards-box');
+      movieCardBox.textContent = '';
+      rows.forEach((item) => {
+        let movieTitle = item['title'];
+        let movieDesc = item['overview'];
+        let movieRate = item['vote_average'];
+        let movieImg = item['poster_path'];
+        let movieId = item['id'];
+
+        let temp_html = `<div class="col" style="color: white">
+                           <div class="solo-card" id="cardPost-${movieId}" style="background-color: rgb(58, 58, 57)">
+                               <img src="https://image.tmdb.org/t/p/w500${movieImg}"
+                                  class="card-img-top"/>
+                               <div class="card-body">
+                                  <h2 class="card-title">${movieTitle}</h5>
+                                  <p class="${textColor(
+                                    movieRate
+                                  )}">${movieRate}</p>
+                                  <p class="card-text">${movieDesc}</p>
+                              </div>
+                          </div>
+                      </div>`;
+
+        movieCardBox.insertAdjacentHTML('beforeend', temp_html);
+        const clickCardBox = document.getElementById(`cardPost-${movieId}`);
+        clickCardBox.addEventListener('click', () => clickCard(movieId));
+      });
+    });
+}
+
+const popularTab = document.getElementById('popular-category');
+popularTab.addEventListener('click', () => showMovieList1());
+
+function showMovieList2() {
+  fetch(NowPlaying, options)
+    .then((response) => response.json())
+    .then((data) => {
+      let rows = data['results'];
+      const movieCardBox = document.getElementById('cards-box');
+      movieCardBox.textContent = '';
+      rows.forEach((item) => {
+        let movieTitle = item['title'];
+        let movieDesc = item['overview'];
+        let movieRate = item['vote_average'];
+        let movieImg = item['poster_path'];
+        let movieId = item['id'];
+
+        let temp_html = `<div class="col" style="color: white">
+                           <div class="solo-card" id="cardPost-${movieId}" style="background-color: rgb(58, 58, 57)">
+                               <img src="https://image.tmdb.org/t/p/w500${movieImg}"
+                                  class="card-img-top"/>
+                               <div class="card-body">
+                                  <h2 class="card-title">${movieTitle}</h5>
+                                  <p class="${textColor(
+                                    movieRate
+                                  )}">${movieRate}</p>
+                                  <p class="card-text">${movieDesc}</p>
+                              </div>
+                          </div>
+                      </div>`;
+
+        movieCardBox.insertAdjacentHTML('beforeend', temp_html);
+        const clickCardBox = document.getElementById(`cardPost-${movieId}`);
+        clickCardBox.addEventListener('click', () => clickCard(movieId));
+      });
+    });
+}
+
+const nowPlayingTab = document.getElementById('nowplaying-category');
+nowPlayingTab.addEventListener('click', () => showMovieList2());
+
+function showMovieList3() {
+  fetch(TopRated, options)
+    .then((response) => response.json())
+    .then((data) => {
+      let rows = data['results'];
+      const movieCardBox = document.getElementById('cards-box');
+      movieCardBox.textContent = '';
+      rows.forEach((item) => {
+        let movieTitle = item['title'];
+        let movieDesc = item['overview'];
+        let movieRate = item['vote_average'];
+        let movieImg = item['poster_path'];
+        let movieId = item['id'];
+
+        let temp_html = `<div class="col" style="color: white">
+                           <div class="solo-card" id="cardPost-${movieId}" style="background-color: rgb(58, 58, 57)">
+                               <img src="https://image.tmdb.org/t/p/w500${movieImg}"
+                                  class="card-img-top"/>
+                               <div class="card-body">
+                                  <h2 class="card-title">${movieTitle}</h5>
+                                  <p class="${textColor(
+                                    movieRate
+                                  )}">${movieRate}</p>
+                                  <p class="card-text">${movieDesc}</p>
+                              </div>
+                          </div>
+                      </div>`;
+
+        movieCardBox.insertAdjacentHTML('beforeend', temp_html);
+        const clickCardBox = document.getElementById(`cardPost-${movieId}`);
+        clickCardBox.addEventListener('click', () => clickCard(movieId));
+      });
+    });
+}
+
+const topRatedTab = document.getElementById('toprate-category');
+topRatedTab.addEventListener('click', () => showMovieList3());
+
+function showMovieList4() {
+  fetch(Upcoming, options)
+    .then((response) => response.json())
+    .then((data) => {
+      let rows = data['results'];
+      const movieCardBox = document.getElementById('cards-box');
+      movieCardBox.textContent = '';
+      rows.forEach((item) => {
+        let movieTitle = item['title'];
+        let movieDesc = item['overview'];
+        let movieRate = item['vote_average'];
+        let movieImg = item['poster_path'];
+        let movieId = item['id'];
+
+        let temp_html = `<div class="col" style="color: white">
+                           <div class="solo-card" id="cardPost-${movieId}" style="background-color: rgb(58, 58, 57)">
+                               <img src="https://image.tmdb.org/t/p/w500${movieImg}"
+                                  class="card-img-top"/>
+                               <div class="card-body">
+                                  <h2 class="card-title">${movieTitle}</h5>
+                                  <p class="${textColor(
+                                    movieRate
+                                  )}">${movieRate}</p>
+                                  <p class="card-text">${movieDesc}</p>
+                              </div>
+                          </div>
+                      </div>`;
+
+        movieCardBox.insertAdjacentHTML('beforeend', temp_html);
+        const clickCardBox = document.getElementById(`cardPost-${movieId}`);
+        clickCardBox.addEventListener('click', () => clickCard(movieId));
+      });
+    });
+}
+
+const upcomingTab = document.getElementById('upcoming-category');
+upcomingTab.addEventListener('click', () => showMovieList4());
+
 // 사용자가 영화를 검색할 때 호출되는 함수입니다. 입력된 input과 맞는 영화 제목을 필터링하고, 일치하는 영화들만 화면에 추가합니다.
 // 마지막 부분은 검색 버튼과 검색 입력 상자에 이벤트를 등록하는 부분입니다.
 function searchMovie() {
   const searchBox = document.getElementById('search-box').value;
   const movieCardBox = document.getElementById('cards-box');
 
-  fetch(apiKey, options)
+  const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=e9bb92f648d4191155d17c8e43f25e68&language=ko&query=${encodeURIComponent(
+    searchBox
+  )}`;
+
+  fetch(searchUrl, options)
     .then((response) => response.json())
     .then((data) => {
       let results = data['results'];
       if (searchBox.length === 0) {
-        alert('한 글자 이상 입력하세요'); // 사용자가 입력을 안하고 버튼만 눌렀을때 예외처리
+        alert('한 글자 이상 입력하세요');
       }
-      const filteredResults = results
-        .map((item) => ({
-          // 가져온 데이터들을 편하게 사용하기 위해서 map을 사용하여
-          // 키 값을 지정하여 객체화시켰습니다.
-          movieTitle: item['title'],
-          movieDesc: item['overview'],
-          movieRate: item['vote_average'],
-          movieImg: item['poster_path'],
-          movieId: item['id'],
-        }))
-        .filter((movie) =>
-          movie.movieTitle // 영화 제목과 사용자가 입력한 input이 일치하는 항목을 찾습니다.
-            .toLowerCase() // 영화 제목, 사용자 input을 소문자로 변환 (includes 메소드는 대소문자를 구별하기 때문)
-            .replace(/ /g, '') // 사용자가 띄어쓰기를 안 했을때도 검색이 잘 되게 영화제목을 공백제거.
-            .includes(searchBox.replace(/ /g, '').toLowerCase())
-        );
-      if (filteredResults.length === 0) {
-        alert('일치하는 검색 결과가 없습니다'); // api를 사용하여 가져온 데이터들 중 사용자가 검색한 항목이 없는경우 예외처리
+      if (results.length === 0) {
+        alert('일치하는 검색 결과가 없습니다');
         window.location.reload();
+      } else {
+        movieCardBox.textContent = '';
+        results.forEach((item) => {
+          let movieTitle = item['title'];
+          let movieDesc = item['overview'];
+          let movieRate = item['vote_average'];
+          let movieImg = item['poster_path'];
+          let movieId = item['id'];
+
+          let temp_html = `<div class="col" style="color: white">
+                             <div class="solo-card" id="cardPost-${movieId}" style="background-color: rgb(58, 58, 57)">
+                                 <img src="https://image.tmdb.org/t/p/w500${movieImg}"
+                                    class="card-img-top"/>
+                                 <div class="card-body">
+                                    <h2 class="card-title">${movieTitle}</h5>
+                                    <p class="${textColor(
+                                      movieRate
+                                    )}">${movieRate}</p>
+                                    <p class="card-text">${movieDesc}</p>
+                                </div>
+                            </div>
+                        </div>`;
+
+          movieCardBox.insertAdjacentHTML('beforeend', temp_html);
+          const clickCardBox = document.getElementById(`cardPost-${movieId}`);
+          clickCardBox.addEventListener('click', () => clickCard(movieId));
+        });
       }
-      movieCardBox.textContent = ''; // movieCardBox안의 text 요소들을 지워주기 위해 사용했습니다.
-      filteredResults.forEach((movie) => {
-        let temp_html = `<div class="col" style="color: white">
-                            <div class="solo-card" id="cardPost-${
-                              movie.movieId
-                            }" style="background-color: rgb(58, 58, 57)">
-                                <img src="https://image.tmdb.org/t/p/w500${
-                                  movie.movieImg
-                                }"
-                                  class="card-img-top"/>
-                                <div class="card-body">
-                                  <h2 class="card-title">${
-                                    movie.movieTitle
-                                  }</h5>
-                                  <p class="${textColor(movie.movieRate)}">${
-          movie.movieRate
-        }</p>
-                                  <p class="card-text">${movie.movieDesc}</p>
-                              </div>
-                          </div>
-                      </div>`;
-        movieCardBox.insertAdjacentHTML('beforeend', temp_html);
-        const clickCardBox = document.getElementById(
-          `cardPost-${movie.movieId}`
-        );
-        clickCardBox.addEventListener('click', () => clickCard(movie.movieId));
-      });
     });
 }
 

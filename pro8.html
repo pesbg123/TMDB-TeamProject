@@ -14,12 +14,27 @@
     <div class="mytitle">
         <h1 class="title" onclick="main()">🥕Carrot Movie🥕</h1>
     </div>
-    <hr class="bar">
     <div class="input-group">
-        <button class="search-btn" id="click-btn" type="button">
-            <p>search</p>
-        </button>
-        <input type="text" id="search-box" placeholder="영화 제목을 입력하세요" autofocus>
+        <nav>
+            <div class="category" id="popular-category">
+                Popular
+            </div>
+            <div class="category" id="nowplaying-category">
+                Now Playing
+            </div>
+            <div class="category" id="toprate-category">
+                Top Rated
+            </div>
+            <div class="category" id="upcoming-category">
+                Upcoming
+            </div>
+        </nav>
+        <div class="searchBbtn">
+            <input type="text" id="search-box" placeholder="영화 제목을 입력하세요" autofocus>
+            <button class="search-btn" id="click-btn" type="button">
+                <p>search</p>
+            </button>
+        </div>
     </div>
     <div class="mycards">
         <div class="card-box" id="cards-box">
