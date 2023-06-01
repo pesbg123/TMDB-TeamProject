@@ -236,9 +236,6 @@ function searchMovie() {
     .then((response) => response.json())
     .then((data) => {
       let results = data['results'];
-      if (searchBox.length === 0) {
-        alert('한 글자 이상 입력하세요');
-      }
       if (results.length === 0) {
         alert('일치하는 검색 결과가 없습니다');
         window.location.reload();
