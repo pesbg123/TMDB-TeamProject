@@ -135,7 +135,7 @@ const searchMovie = () => {
 };
 
 clickButton.addEventListener('click', searchMovie);
-
+// 엔터키를 눌러도 버튼을 누른것처럼 동작
 searchBox.addEventListener('keypress', (event) => {
   if (event.key === 'Enter') {
     event.preventDefault();
