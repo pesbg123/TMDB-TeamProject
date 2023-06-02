@@ -87,7 +87,8 @@ nowPlayingTab.addEventListener('click', () => cardsRemove(NowPlaying));
 topRatedTab.addEventListener('click', () => cardsRemove(TopRated));
 upcomingTab.addEventListener('click', () => cardsRemove(Upcoming));
 
-// 사용자가 영화를 검색할 때 호출되는 함수입니다. 입력된 input과 맞는 영화 제목을 필터링하고, 일치하는 영화들만 화면에 추가합니다.
+// 사용자가 영화를 검색할 때 호출되는 함수입니다. !! 공백을 인식하기 때문에 검색에 주의가 필요합니다.
+// 입력된 input과 맞는 영화 제목을 필터링하고, 일치하는 영화들만 화면에 추가합니다.
 // 마지막 부분은 검색 버튼과 검색 입력 상자에 이벤트를 등록하는 부분입니다.
 const searchMovie = () => {
   const searchBoxValue = document
