@@ -40,7 +40,7 @@ const showMovieList = (moviesUrl) => {
       rows.forEach((item) => {
         let movieTitle = item['title'];
         let movieDesc = item['overview'];
-        let movieRate = item['vote_average'];
+        let movieRate = Math.round(item['vote_average'] * 10) / 10;
         let movieImg = item['poster_path'];
         let movieId = item['id'];
 
@@ -89,7 +89,7 @@ const searchMovie = () => {
         results.forEach((item) => {
           const movieTitle = item.title;
           const movieDesc = item.overview;
-          const movieRate = item.vote_average;
+          const movieRate = Math.round(item.vote_average * 10) / 10;
           const movieImg = item.poster_path;
           const movieId = item.id;
 
