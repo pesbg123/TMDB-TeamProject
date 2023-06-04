@@ -69,6 +69,12 @@ body {
   border-top-left-radius: 17px;
 }
 
+.solo-card img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
 /* 헤더에 있는 타이틀 폰트적용 & 사이즈, 색지정 */
 .title {
   font-size: 4rem;
