@@ -28,7 +28,7 @@ body {
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
   background-color: transparent;
-  border: none;
+  border: 0.1px solid rgb(0, 0, 0);
   color: white;
   text-align: center;
   font-size: 1.5rem;
@@ -70,6 +70,7 @@ body {
   align-items: center; /* 세로 가운데 정렬 */
   width: 30%;
   padding: 15.5px 0px 15px 0px;
+  border: 0.1px solid rgb(0, 0, 0);
 }
 
 .search-btn p {
