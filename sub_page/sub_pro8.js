@@ -26,13 +26,12 @@ fetch(movieUrl, options)
     const movieImg = data["poster_path"];
 
     // 영화 데이터를 HTML에 표시
-    let temp_html = `
-                
-                        <div class="movie-box">
-                            <div class="movie-boxin">
-                                <div class="movie-img">
-                                    <img src="https://image.tmdb.org/t/p/w500${movieImg}" class="movie-img"/>
+    let temp_html = `<div class="movie-box">
+                        <div class="movie-boxin">
+                            <div class="movie-img">
+                                <img src="https://image.tmdb.org/t/p/w500${movieImg}" class="movie-img"/>
                                 </div>
+                            <div class="title-comment">
                                 <div class="movie-title">
                                     <h1>${movieTitle}</h1>
                                 </div>
@@ -50,8 +49,8 @@ fetch(movieUrl, options)
                                   </div>
                                 </div>
                             </div>
-                        </div> 
-                        
+                            </div>
+                        </div>
                         `;
     movieDetailsContainer.innerHTML = temp_html;
   });

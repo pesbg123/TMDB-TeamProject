@@ -33,6 +33,7 @@ body {
   text-align: center;
   font-size: 1.5rem;
   width: 70%;
+  background-color: black;
 }
 
 /* 검색기능에 placeholder 위치 사이즈, 색상 조정 */
@@ -71,6 +72,7 @@ body {
   width: 30%;
   padding: 15.5px 0px 15px 0px;
   border: 0.1px solid rgb(0, 0, 0);
+  background-color: black;
 }
 
 .search-btn p {
@@ -100,13 +102,16 @@ nav .Carrot-title {
   margin: 3rem;
   color: rgb(191, 51, 23);
 }
-/* 서브페이지 영화 이미지, 설명, 댓글창 */
+/* 서브페이지 영화 이미지, 댓글작성 */
 .movie-header {
   background-color: transparent;
   height: 50rem;
   background-position: center;
   background-size: cover;
 }
+/* 
+.movie-header .input-group {
+} */
 
 .movie-box {
   background-color: transparent;
@@ -117,7 +122,7 @@ nav .Carrot-title {
 .movie-box .movie-boxin {
   width: 100%;
   display: flex;
-  background-color: gray;
+  backdrop-filter: blur(10px);
 }
 
 .movie-box .movie-boxin .movie-img {
@@ -132,17 +137,31 @@ nav .Carrot-title {
   border: 0.1px solid rgb(92, 90, 90);
 }
 
-.movie-box .movie-boxin .movie-title {
-  background-color: aqua;
-  width: 500px;
-  height: 60px;
+.movie-box .movie-boxin .title-comment {
+  background-color: transparent;
+  width: 700px;
+  margin-right: auto;
+  margin-left: 30px;
+  text-align: center;
 }
 
-.movie-box .movie-boxin .comment-postbtn {
-  margin-right: auto;
-  width: 200px;
+.movie-box .movie-boxin .title-comment .movie-title {
+  background-color: blanchedalmond;
+  border-radius: 10px;
+  font-size: 20px;
+  width: 700px;
   height: 100px;
-  position: relative;
-  right: 400px;
-  top: 100px;
+  margin-top: 50px;
+}
+
+.movie-box .movie-boxin .title-comment .comment-postbtn {
+  width: 300px;
+  height: 100px;
+  margin-top: 25px;
+  border-radius: 30px;
+  border: 1px solid white;
+}
+.comment-postbtn:hover {
+  box-shadow: 0 200px 0 0 rgba(57, 55, 55, 0.25) inset,
+    0 200px 0 0 rgba(57, 55, 55, 0.25) inset;
 }
