@@ -51,9 +51,9 @@ const showMovieList = (moviesUrl, options) => {
         let movieId = item['id'];
 
         let temp_html = `<div class="col" style="color: white">
-                           <div class="solo-card" id="cardPost-${movieId}" style="background-color: rgb(58, 58, 57)">
+                           <div class="solo-card" style="background-color: rgb(58, 58, 57)">
                                <img src="https://image.tmdb.org/t/p/w500${movieImg}"
-                                  class="card-img-top"/>
+                                  class="card-img-top" id="cardPost-${movieId}"/>
                                <div class="card-body">
                                   <h2 class="card-title">${movieTitle}</h5>
                                   <p class="${textColor(
@@ -110,17 +110,19 @@ const searchMovie = () => {
           const movieImg = item.poster_path;
           const movieId = item.id;
 
-          const temp_html = `
-            <div class="col" style="color: white">
-              <div class="solo-card" id="cardPost-${movieId}" style="background-color: rgb(58, 58, 57)">
-                <img src="https://image.tmdb.org/t/p/w500${movieImg}" class="card-img-top"/>
-                <div class="card-body">
-                  <h2 class="card-title">${movieTitle}</h5>
-                  <p class="${textColor(movieRate)}">${movieRate}</p>
-                  <p class="card-text">${movieDesc}</p>
-                </div>
-              </div>
-            </div>`;
+          const temp_html = `<div class="col" style="color: white">
+                                <div class="solo-card" style="background-color: rgb(58, 58, 57)">
+                                    <img src="https://image.tmdb.org/t/p/w500${movieImg}"
+                                      class="card-img-top" id="cardPost-${movieId}"/>
+                                    <div class="card-body">
+                                      <h2 class="card-title">${movieTitle}</h5>
+                                      <p class="${textColor(
+                                        movieRate
+                                      )}">${movieRate}</p>
+                                      <p class="card-text">${movieDesc}</p>
+                                  </div>
+                              </div>
+                          </div>`;
 
           movieCardBox.insertAdjacentHTML('beforeend', temp_html);
 
