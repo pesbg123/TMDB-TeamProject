@@ -40,12 +40,14 @@ fetch(movieUrl, options)
                                   <div class="userIpt">
                                     <input type="text" class="userIpt" id="userIpt" placeholder="사용자명을 입력하세요">
                                   </div>
+                                  <div class="psWordIpt">
+                                    <input type="text" class="psWordIpt" id="psWordIpt" placeholder="비밀번호를 입력하세요">
+                                  </div>
                                   <div class="commentIpt">
                                     <textarea id="commentIpt" class="commentIpt" placeholder="리뷰를 남겨보세요"></textarea>
                                   </div>
                                   <div class="reviewBtns">
-                                    <button onclick="posting()" type="button" class="postBtn">기록하기</button>
-                                    <button onclick="close_box()" type="button" class="closeBtn">닫기</button>
+                                    <button onclick="posting()" type="button" class="postBtn">리뷰남기기</button>
                                   </div>
                                 </div>
                             </div>
