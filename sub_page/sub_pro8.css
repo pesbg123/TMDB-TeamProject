@@ -115,11 +115,9 @@ nav .Carrot-title {
 }
 
 .movie-box .movie-boxin {
-  background-color: white;
-  width: 80rem;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
   display: flex;
+  background-color: gray;
 }
 
 .movie-box .movie-boxin .movie-img {
@@ -131,15 +129,20 @@ nav .Carrot-title {
 .movie-box .movie-boxin .movie-img img {
   width: 100%;
   border-radius: 10px;
+  border: 0.1px solid rgb(92, 90, 90);
 }
 
 .movie-box .movie-boxin .movie-title {
   background-color: aqua;
   width: 500px;
   height: 60px;
-  margin-right: 3rem;
 }
 
 .movie-box .movie-boxin .comment-postbtn {
   margin-right: auto;
+  width: 200px;
+  height: 100px;
+  position: relative;
+  right: 400px;
+  top: 100px;
 }
