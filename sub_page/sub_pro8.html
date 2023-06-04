@@ -69,7 +69,7 @@
                 const movieDesc = data['overview'];
                 const movieRate = data['vote_average'];
                 const movieImg = data['poster_path'];
-                const movieBackUrl = data['backdrop_path'];
+                const movieBackUrl = data['belongs_to_collection']['poster_path'];
                 console.log(movieBackUrl);
 
 
