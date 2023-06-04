@@ -70,7 +70,7 @@ const showMovieList = (moviesUrl, options) => {
         // id띄워주는 이벤트
         const clickCardBox = document.getElementById(`cardPost-${movieId}`);
         clickCardBox.addEventListener('click', () => clickCard(movieId));
-
+        // 상세페이지 넘어가는 이벤트
         const clickDescBox = document.getElementById(`desc-body-${movieId}`);
         clickDescBox.addEventListener('click', () => clickDesc(movieId));
       });
@@ -135,6 +135,9 @@ const searchMovie = () => {
           // id띄워주는 이벤트
           const clickCardBox = document.getElementById(`cardPost-${movieId}`);
           clickCardBox.addEventListener('click', () => clickCard(movieId));
+          // 상세페이지 넘어가는 이벤트
+          const clickDescBox = document.getElementById(`desc-body-${movieId}`);
+          clickDescBox.addEventListener('click', () => clickDesc(movieId));
         });
       }
     });
