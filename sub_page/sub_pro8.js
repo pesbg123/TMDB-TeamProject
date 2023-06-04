@@ -42,16 +42,18 @@ fetch(movieUrl, options)
                                
                                 <button onclick="open_box()" class="comment-postbtn">댓글창</button>
                                 <div class="reviewBox" id="reviewBox" style="display: none;">
-                                    <div class="userIpt">
-                                        <input type="text" class="userIpt" id="userIpt" placeholder="사용자명을 입력하세요">
-                                    </div>
-                                    <div class="commentIpt">
-                                        <textarea id="commentIpt" class="commentIpt" placeholder="리뷰를 남겨보세요"></textarea>
-                                    </div>
-                                    <div class="reviewBtns">
-                                        <button onclick="posting()" type="button" class="postBtn">기록하기</button>
-                                        <button onclick="close_box()" type="button" class="closeBtn">닫기</button>
-                                    </div>
+                                  <div class="userIpt">
+                                    <input type="text" class="userIpt" id="userIpt" placeholder="사용자명을 입력하세요">
+                                  </div>
+                                  <div class="psWordIpt">
+                                    <input type="text" class="psWordIpt" id="psWordIpt" placeholder="비밀번호를 입력하세요">
+                                  </div>
+                                  <div class="commentIpt">
+                                    <textarea id="commentIpt" class="commentIpt" placeholder="리뷰를 남겨보세요"></textarea>
+                                  </div>
+                                  <div class="reviewBtns">
+                                    <button onclick="posting()" type="button" class="postBtn">리뷰남기기</button>
+                                  </div>
                                 </div>
                             </div>
                         </div>
@@ -61,14 +63,19 @@ fetch(movieUrl, options)
 
 function open_box() {
   const reviewBox = document.getElementById('reviewBox');
-  reviewBox.style.display = 'block';
-  localStorage.setItem('reviewBoxDisplay', 'visible');
-}
+  const reviewBoxDisplay = localStorage.getItem('reviewBoxDisplay');
 
-function close_box() {
-  const reviewBox = document.getElementById('reviewBox');
-  reviewBox.style.display = 'none';
-  localStorage.setItem('reviewBoxDisplay', 'hidden');
+  switch (reviewBoxDisplay) {
+    case 'visible':
+      reviewBox.style.display = 'none';
+      localStorage.setItem('reviewBoxDisplay', 'hidden');
+      break;
+    case 'hidden':
+    default:
+      reviewBox.style.display = 'block';
+      localStorage.setItem('reviewBoxDisplay', 'visible');
+      break;
+  }
 }
 
 // 평점 색 구분
