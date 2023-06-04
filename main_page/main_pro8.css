@@ -42,6 +42,12 @@ body {
   padding: 0.5rem 1rem;
 }
 
+/* 이미지 밑에 카드도 테두리 둥글게 적용 */
+.solo-card {
+  border-radius: 17px;
+  height: 100%;
+}
+
 /* 평점조건마다 색입히기 */
 .card-body p.green {
   color: green;
@@ -62,11 +68,7 @@ body {
   border-top-right-radius: 17px;
   border-top-left-radius: 17px;
 }
-/* 이미지 밑에 카드도 테두리 둥글게 적용 */
-.solo-card {
-  border-radius: 17px;
-  height: 100%;
-}
+
 /* 헤더에 있는 타이틀 폰트적용 & 사이즈, 색지정 */
 .title {
   font-size: 4rem;
