@@ -22,7 +22,8 @@ fetch(movieUrl, options)
   .then((data) => {
     const movieTitle = data['title'];
     const movieDesc = data['overview'];
-    const movieRate = data['vote_average'];
+    const movieRate = Math.round(data['vote_average'] * 10) / 10;
+
     const movieImg = data['poster_path'];
 
     // 영화 데이터를 HTML에 표시
