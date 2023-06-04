@@ -29,12 +29,16 @@ fetch(movieUrl, options)
     let temp_html = `<div class="movie-box">
                         <div class="movie-boxin">
                             <div class="movie-img">
-                                <img src="https://image.tmdb.org/t/p/w500${movieImg}" class="movie-img"/>
-                                </div>
+                                <img src="https://image.tmdb.org/t/p/w500${movieImg}" class="movie-img" />
+                            </div>
                             <div class="title-comment">
                                 <div class="movie-title">
                                     <h1>${movieTitle}</h1>
+                                    <div class="movie-rate">평점:<p class="${getRatingColor(
+                                      movieRate
+                                    )}">&nbsp;★${movieRate}</p></div>
                                 </div>
+                               
                                 <button onclick="open_box()" class="comment-postbtn">댓글창</button>
                                 <div class="reviewBox" id="reviewBox" style="display: none;">
                                   <div class="userIpt">
@@ -51,9 +55,8 @@ fetch(movieUrl, options)
                                   </div>
                                 </div>
                             </div>
-                            </div>
                         </div>
-                        `;
+                    </div>`;
     movieDetailsContainer.innerHTML = temp_html;
   });
 
@@ -67,4 +70,15 @@ function close_box() {
   const reviewBox = document.getElementById("reviewBox");
   reviewBox.style.display = "none";
   localStorage.setItem("reviewBoxDisplay", "hidden");
+}
+
+// 평점 색 구분
+function getRatingColor(rate) {
+  if (rate >= 8) {
+    return "green";
+  } else if (rate >= 5) {
+    return "orange";
+  } else {
+    return "red";
+  }
 }

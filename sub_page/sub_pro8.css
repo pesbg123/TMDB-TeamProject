@@ -153,7 +153,26 @@ nav .Carrot-title {
   height: 100px;
   margin-top: 50px;
 }
+/* 평점조건마다 색입히기 */
+.movie-rate {
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  height: 10px;
+  display: flex;
+}
 
+.movie-rate p.green {
+  color: green;
+}
+
+.movie-rate p.orange {
+  color: orange;
+}
+
+.movie-rate p.red {
+  color: red;
+}
 .movie-box .movie-boxin .title-comment .comment-postbtn {
   width: 300px;
   height: 100px;
