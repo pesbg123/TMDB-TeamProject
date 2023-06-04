@@ -54,7 +54,7 @@ const showMovieList = (moviesUrl, options) => {
                            <div class="solo-card" style="background-color: rgb(58, 58, 57)">
                                <img src="https://image.tmdb.org/t/p/w500${movieImg}"
                                   class="card-img-top" id="cardPost-${movieId}"/>
-                               <div class="card-body">
+                               <div class="card-body" id="desc-body-${movieId}">
                                   <h2 class="card-title">${movieTitle}</h5>
                                   <p class="${textColor(
                                     movieRate
@@ -66,20 +66,27 @@ const showMovieList = (moviesUrl, options) => {
         // insertAdjacentHTML() 메소드를 사용하여 movieCardBox 요소에 temp_htm을 동적으로 추가합니다.
         // beforeend는 movieCardBox 요소의 마지막 자식 요소로 추가하라는 의미입니다.
         movieCardBox.insertAdjacentHTML('beforeend', temp_html);
+
+        // id띄워주는 이벤트
         const clickCardBox = document.getElementById(`cardPost-${movieId}`);
         clickCardBox.addEventListener('click', () => clickCard(movieId));
+
+        const clickDescBox = document.getElementById(`desc-body-${movieId}`);
+        clickDescBox.addEventListener('click', () => clickDesc(movieId));
       });
     });
 };
+
+// 각 카드 이미지들을 클릭할때 해당 영화의 id를 매개변수로 받아 화면에 출력하는 함수 입니다.
+const clickCard = (movieId) => alert(`id: ${movieId}`);
+// 각 카드 설명을 클릭할때 해당 영회의 개인 페이지로 넘어가는 함수 입니다.
+const clickDesc = () => window.open('/sub_page/sub_pro8.html');
 
 // 동적으로 api url을 매개변수로 받을 수 있게 만들었습니다.
 const url = (url) => showMovieList(url + 'api_key=' + apiKey, options);
 
 // 웹사이트에 접속하자마자 popular 카테고리의 영화 목록을 출력하게 함수를 호출합니다.
 url(TopRated);
-
-// 각 카드들을 클릭할때 해당 영화의 id를 매개변수로 받아 화면에 출력하는 함수 입니다.
-const clickCard = (movieId) => alert(`id: ${movieId}`);
 
 // popular카테고리 클릭시 해당 영화 리스트 출력되는 이벤트입니다.
 popularTab.addEventListener('click', () => cardsRemove(popular));
@@ -125,7 +132,7 @@ const searchMovie = () => {
                           </div>`;
 
           movieCardBox.insertAdjacentHTML('beforeend', temp_html);
-
+          // id띄워주는 이벤트
           const clickCardBox = document.getElementById(`cardPost-${movieId}`);
           clickCardBox.addEventListener('click', () => clickCard(movieId));
         });
