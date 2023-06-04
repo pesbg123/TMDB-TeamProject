@@ -28,6 +28,7 @@ body {
 .col {
   width: 350px;
   margin: 1rem;
+  margin-bottom: 50px;
   position: relative;
 }
 
@@ -64,6 +65,7 @@ body {
 /* 이미지 밑에 카드도 테두리 둥글게 적용 */
 .solo-card {
   border-radius: 17px;
+  height: 100%;
 }
 /* 헤더에 있는 타이틀 폰트적용 & 사이즈, 색지정 */
 .title {
