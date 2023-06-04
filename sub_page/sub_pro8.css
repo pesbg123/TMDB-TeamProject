@@ -101,13 +101,45 @@ nav .Carrot-title {
   color: rgb(191, 51, 23);
 }
 /* 서브페이지 영화 이미지, 설명, 댓글창 */
-.movie-box {
+.movie-header {
   background-color: transparent;
   height: 50rem;
-}
-
-/* .movie-box img {
   background-position: center;
   background-size: cover;
+}
+
+.movie-box {
+  background-color: transparent;
+  margin-top: 20rem;
+  height: 300px;
+}
+
+.movie-box .movie-boxin {
+  background-color: white;
+  width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.movie-box .movie-boxin .movie-img {
+  width: 250px;
+  height: 300px;
+  margin-right: 3rem;
+  margin-left: auto;
+}
+.movie-box .movie-boxin .movie-img img {
   width: 100%;
-} */
+  border-radius: 10px;
+}
+
+.movie-box .movie-boxin .movie-title {
+  background-color: aqua;
+  width: 500px;
+  height: 60px;
+  margin-right: 3rem;
+}
+
+.movie-box .movie-boxin .comment-postbtn {
+  margin-right: auto;
+}
