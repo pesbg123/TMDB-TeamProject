@@ -89,14 +89,15 @@ nav {
   font-family: 'Cherry Bomb One', cursive;
   font-size: 2rem;
   display: flex;
-  color: tomato;
   margin-left: 3%;
 }
 
 nav .category {
   margin: 3rem;
+  color: tomato;
 }
 
 nav .Carrot-title {
   margin: 3rem;
+  color: rgb(191, 51, 23);
 }
