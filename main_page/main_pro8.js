@@ -51,9 +51,9 @@ const showMovieList = (moviesUrl, options) => {
         let movieId = item['id'];
 
         let temp_html = `<div class="col" style="color: white">
-                           <div class="solo-card" id="cardPost-${movieId}" style="background-color: rgb(58, 58, 57)">
+                           <div class="solo-card" style="background-color: rgb(58, 58, 57)">
                                <img src="https://image.tmdb.org/t/p/w500${movieImg}"
-                                  class="card-img-top"/>
+                                  class="card-img-top" id="cardPost-${movieId}"/>
                                <div class="card-body">
                                   <h2 class="card-title">${movieTitle}</h5>
                                   <p class="${textColor(
@@ -76,7 +76,7 @@ const showMovieList = (moviesUrl, options) => {
 const url = (url) => showMovieList(url + 'api_key=' + apiKey, options);
 
 // 웹사이트에 접속하자마자 popular 카테고리의 영화 목록을 출력하게 함수를 호출합니다.
-url(popular);
+url(TopRated);
 
 // 각 카드들을 클릭할때 해당 영화의 id를 매개변수로 받아 화면에 출력하는 함수 입니다.
 const clickCard = (movieId) => alert(`id: ${movieId}`);
@@ -91,11 +91,8 @@ upcomingTab.addEventListener('click', () => cardsRemove(Upcoming));
 // 입력된 input과 맞는 영화 제목을 필터링하고, 일치하는 영화들만 화면에 추가합니다.
 // 마지막 부분은 검색 버튼과 검색 입력 상자에 이벤트를 등록하는 부분입니다.
 const searchMovie = () => {
-  const searchBoxValue = document
-    .getElementById('search-box')
-    .value.toLowerCase()
-    .replace(/ /g, ' ');
-  const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=e9bb92f648d4191155d17c8e43f25e68&language=ko&query=${searchBoxValue}`;
+  const searchBoxValue = document.getElementById('search-box').value;
+  const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=ko&query=${searchBoxValue}`;
 
   fetch(searchUrl, options)
     .then((response) => response.json())
