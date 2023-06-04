@@ -147,3 +147,5 @@ popularTab.addEventListener('click', () => cardsRemove(popular));
 nowPlayingTab.addEventListener('click', () => cardsRemove(NowPlaying));
 topRatedTab.addEventListener('click', () => cardsRemove(TopRated));
 upcomingTab.addEventListener('click', () => cardsRemove(Upcoming));
+// const clickDesc = (movieId) =>
+//   (window.location.href = `/sub_page/sub_pro8.html?id=${movieId}`);
