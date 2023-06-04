@@ -189,20 +189,38 @@ nav .Carrot-title {
   background-color: white;
   width: 300px;
   height: 200px;
+  border-radius: 10px;
   padding: 20px;
-  justify-content: space-around;
+}
+
+.userIpt {
+  width: 290px;
+  height: 30px;
+  margin-bottom: 15px;
+}
+
+.psWordIpt {
+  width: 290px;
+  height: 30px;
+  margin-bottom: 15px;
+}
+
+.commentIpt {
+  width: 290px;
+  height: 70px;
+  margin-bottom: 20px;
 }
 
 .postBtn {
   width: 100px;
-  height: 45px;
+  height: 30px;
   margin-left: 20px;
   margin-right: 20px;
   background-color: orange;
   border: 2px solid var(--primay-color);
-  border-radius: 50px;
+  border-radius: 20px;
   color: white;
-  font-size: medium;
+  font-size: small;
 }
 
 .postBtn:hover {

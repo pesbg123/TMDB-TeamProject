@@ -62,14 +62,19 @@ fetch(movieUrl, options)
 
 function open_box() {
   const reviewBox = document.getElementById("reviewBox");
-  reviewBox.style.display = "block";
-  localStorage.setItem("reviewBoxDisplay", "visible");
-}
+  const reviewBoxDisplay = localStorage.getItem("reviewBoxDisplay");
 
-function close_box() {
-  const reviewBox = document.getElementById("reviewBox");
-  reviewBox.style.display = "none";
-  localStorage.setItem("reviewBoxDisplay", "hidden");
+  switch (reviewBoxDisplay) {
+    case "visible":
+      reviewBox.style.display = "none";
+      localStorage.setItem("reviewBoxDisplay", "hidden");
+      break;
+    case "hidden":
+    default:
+      reviewBox.style.display = "block";
+      localStorage.setItem("reviewBoxDisplay", "visible");
+      break;
+  }
 }
 
 // 평점 색 구분
