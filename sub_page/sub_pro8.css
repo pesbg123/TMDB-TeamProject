@@ -15,12 +15,10 @@ body {
 
 /* 카테고리, 검색창, 버튼이 들어있는 부모div */
 .input-group {
-  margin-right: 100px;
   width: 100%;
-  max-width: 100%;
   display: flex;
   align-items: center;
-  background-color: rgb(53, 51, 51);
+  background-color: transparent;
 }
 
 /* 검색창 크기, 여백, 폰트, 글자 색상, 글자 위치 조정*/
@@ -29,7 +27,7 @@ body {
   padding: 13.25px 0px 13.25px 0px;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
-  background-color: rgb(0, 0, 0);
+  background-color: transparent;
   border: none;
   color: white;
   text-align: center;
@@ -66,7 +64,7 @@ body {
   font-family: 'Cherry Bomb One', cursive;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
-  background-color: black;
+  background-color: transparent;
   color: tomato;
   border: none;
   align-items: center; /* 세로 가운데 정렬 */
@@ -103,45 +101,12 @@ nav .Carrot-title {
 }
 /* 서브페이지 영화 이미지, 설명, 댓글창 */
 .movie-box {
-  background-color: green;
+  background-color: transparent;
   height: 50rem;
-  display: flex;
 }
 
-.movie-box .movie-img {
-  background-color: white;
-  font-size: 300px;
-  height: 40rem;
-  width: 50%;
-  margin: 3rem;
-  object-fit: cover;
-}
-
-.movie-box .movie-img img {
+/* .movie-box img {
+  background-position: center;
+  background-size: cover;
   width: 100%;
-  height: 700px;
-}
-
-.movie-box .movie-desc {
-  background-color: rgb(77, 77, 77);
-  font-size: 300px;
-  height: 20rem;
-  width: 50%;
-  margin: 3rem;
-}
-
-.movie-box .movie-desc .movie-comment {
-  background-color: white;
-  font-size: 100px;
-  height: 20rem;
-  width: 100%;
-}
-
-/* 서브페이지 댓글박스 */
-.comment-box {
-  background-color: darkblue;
-}
-
-.comment-box .comments {
-  background-color: white;
-}
+} */
