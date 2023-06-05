@@ -245,8 +245,20 @@ nav .Carrot-title {
     0 -80px 0 0 rgba(255, 255, 255, 0.25) inset;
 }
 
+.details {
+  background-color: rgb(63, 63, 63);
+  color: white;
+  width: 70%;
+  height: 700px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  border-radius: 10px;
+  padding: 30px;
+}
+
 .review-list-box {
-  background-color: white;
+  background-color: rgb(61, 61, 61);
   width: 70%;
   height: 500px;
   margin: auto;
@@ -255,10 +267,12 @@ nav .Carrot-title {
 }
 
 .review-card {
-  width: 50%;
+  background-color: rgb(78, 78, 78);
+  color: white;
+  width: 90%;
   height: 200px;
-  border: 1px solid black;
-  border-radius: 5px;
+  border: 1px solid rgb(71, 71, 71);
+  border-radius: 10px;
   padding: 20px;
   margin: 20px 20px 20px 20px;
 }

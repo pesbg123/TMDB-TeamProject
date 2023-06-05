@@ -57,18 +57,25 @@ fetch(movieUrl, options)
                             </div>
                         </div>
                     </div>
+                    <div class="details">
+                      <h2>영화 정보</h2>
+                      <p>${movieTitle}</p>
+                      <p>${movieDesc}</p>
+                    </div>
                     <div class="review-list-box">
                       <div class="mycards" id="review-list">
                         <p></p>
                         <div class="review-card">
                             <div class="review-card-body">
                               <header class="name-header">익명</header>
+                              <hr class="bar">
                               <p>리뷰 남기기 샘플</p>
                             </div>
                         </div>
                         <div class="review-card">
                             <div class="review-card-body">
                               <header class="name-header">익명</header>
+                              <hr class="bar">
                               <p>리뷰 남기기 샘플</p>
                             </div>
                         </div>
@@ -109,3 +116,32 @@ function getRatingColor(rate) {
 const main = () => {
   window.location.href = "/main_page/main_pro8.html";
 };
+
+// 이전에 저장된 리뷰들을 가져옴
+let reviews = localStorage.getItem("reviews")
+  ? JSON.parse(localStorage.getItem("reviews"))
+  : [];
+
+function posting() {
+  const userIptValue = document.getElementById("userIpt").value;
+  const psWordIptValue = document.getElementById("psWordIpt").value;
+  const commentIptValue = document.getElementById("commentIpt").value;
+
+  // 새로운 리뷰 객체 생성
+  const newReview = {
+    user: userIptValue,
+    password: psWordIptValue,
+    comment: commentIptValue,
+  };
+
+  // 리뷰 배열에 새로운 리뷰 추가
+  reviews.push(newReview);
+
+  // 리뷰 배열을 localStorage에 저장
+  localStorage.setItem("reviews", JSON.stringify(reviews));
+
+  // 리뷰 작성 후 reviewBox 숨기기
+  const reviewBox = document.getElementById("reviewBox");
+  reviewBox.style.display = "none";
+  localStorage.setItem("reviewBoxDisplay", "hidden");
+}
