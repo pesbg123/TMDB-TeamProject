@@ -40,19 +40,19 @@ fetch(movieUrl, options)
                                     )}">&nbsp;★${movieRate}</p></div>
                                 </div>
                                
-                                <button onclick="open_box()" class="comment-postbtn">댓글창</button>
+                                <button onclick="open_box()" class="comment-postbtn">Comments</button>
                                 <div class="reviewBox" id="reviewBox" style="display: none;">
                                   <div class="userIpt">
-                                    <input type="text" class="userIpt" id="userIpt" placeholder="사용자명을 입력하세요">
+                                    <input type="text" class="userIpt" id="userIpt" placeholder="UserName">
                                   </div>
                                   <div class="psWordIpt">
-                                    <input type="text" class="psWordIpt" id="psWordIpt" placeholder="비밀번호를 입력하세요">
+                                    <input type="text" class="psWordIpt" id="psWordIpt" placeholder="PW">
                                   </div>
                                   <div class="commentIpt">
-                                    <textarea id="commentIpt" class="commentIpt" placeholder="리뷰를 남겨보세요"></textarea>
+                                    <textarea id="commentIpt" class="commentIpt" placeholder="a review comment"></textarea>
                                   </div>
                                   <div class="reviewBtns">
-                                    <button onclick="posting()" type="button" class="postBtn">리뷰남기기</button>
+                                    <button onclick="posting()" type="button" class="postBtn">Save</button>
                                   </div>
                                 </div>
                             </div>
@@ -89,6 +89,7 @@ function getRatingColor(rate) {
   }
 }
 
+<<<<<<< HEAD
 sub_searchBtn.addEventListener("click", renderMainpage);
 sub_searchBox.addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
@@ -103,3 +104,8 @@ function renderMainpage() {
   return (window.location.href = `/main_page/main_pro8.html?title=${movieTitle}`);
 }
 //url 전달함수입니다.
+=======
+const main = () => {
+  window.location.href = '/main_page/main_pro8.html';
+};
+>>>>>>> 5fcc407cbde4fd7b7dd5ad5e396f67aeaf16ca42

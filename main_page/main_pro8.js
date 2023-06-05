@@ -134,7 +134,7 @@ searchBox.addEventListener("keypress", (event) => {
 //searchMovie함수가 변수를 받는 형식으로 바꿨습니다. 메인페이지와 서브페이지 둘다
 //검색 기능을 쓰기때문에 변수차이로 로직이 구성됩니다.
 const main = () => {
-  window.location.reload();
+  window.location.href = "/main_page/main_pro8.html";
 };
 mainH1.addEventListener("click", main);
 
