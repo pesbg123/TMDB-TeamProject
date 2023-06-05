@@ -111,7 +111,7 @@ sub_searchBox.addEventListener('keypress', (event) => {
   }
 });
 //메인 페이지랑 똑같습니다.
-
+// a
 function renderMainpage() {
   const sub_movieTitle = sub_searchBox.value;
   return (window.location.href = `/main_page/main_pro8.html?title=${sub_movieTitle}`);
