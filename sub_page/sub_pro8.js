@@ -129,6 +129,48 @@ function open_box() {
   }
 }
 
+function posting() {
+  const userIpt = document.getElementById("userIpt").value;
+  const commentIpt = document.getElementById("commentIpt").value;
+
+  // 새로운 리뷰 객체 생성
+  const newReview = {
+    user: userIpt,
+    comment: commentIpt,
+  };
+
+  // 이전에 저장된 리뷰들을 가져옴
+  let reviews = localStorage.getItem("reviews")
+    ? JSON.parse(localStorage.getItem("reviews"))
+    : [];
+
+  // 새로운 리뷰를 리뷰 배열에 추가
+  reviews.push(newReview);
+
+  // 리뷰 배열을 로컬 스토리지에 저장
+  localStorage.setItem("reviews", JSON.stringify(reviews));
+
+  // 리뷰를 리뷰 목록 컨테이너에 추가
+  const reviewListContainer = document.getElementById("review-list");
+  const reviewHTML = `<div class="review-card">
+                          <div class="review-card-body">
+                            <header class="name-header">${userIpt}</header>
+                            <hr class="bar">
+                            <p>${commentIpt}</p>
+                          </div>
+                        </div>`;
+  reviewListContainer.insertAdjacentHTML("beforeend", reviewHTML);
+
+  // 입력 필드 초기화
+  document.getElementById("userIpt").value = "";
+  document.getElementById("commentIpt").value = "";
+
+  // comment 창 닫기
+  const reviewBox = document.getElementById("reviewBox");
+  reviewBox.style.display = "none";
+  localStorage.setItem("reviewBoxDisplay", "hidden");
+}
+
 // 평점 색 구분
 const getRatingColor = (rate) => {
   if (rate >= 8) {
@@ -150,3 +192,17 @@ clickPopular.addEventListener("click", () => clickPopularTab());
 
 const clickPopularTab = () =>
   (window.location.href = `/main_page/main_pro8.html?domain=Popular`);
+
+sub_searchBtn.addEventListener("click", renderMainpage);
+sub_searchBox.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    renderMainpage();
+  }
+});
+//메인 페이지랑 똑같습니다.
+// a
+function renderMainpage() {
+  const sub_movieTitle = sub_searchBox.value;
+  return (window.location.href = `/main_page/main_pro8.html?title=${sub_movieTitle}`);
+}
