@@ -173,4 +173,5 @@ if (sub_movieTitle !== null) {
   searchMovie(sub_movieTitle);
 }
 //sub_movieTitle이 서브페이지에서 검색했을 때 변수로 오는 값입니다.
+
 //값이 비어있지 않다면 메인페이지에 서브페이지에서 검색한 값을 보여줍니다.
