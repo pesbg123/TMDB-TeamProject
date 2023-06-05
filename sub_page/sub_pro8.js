@@ -87,10 +87,8 @@ fetch(movieUrl, options)
                     `;
     movieDetailsContainer.innerHTML = temp_html;
 
-    // 이전에 저장된 리뷰들을 가져옴
-    let reviews = localStorage.getItem("reviews")
-      ? JSON.parse(localStorage.getItem("reviews"))
-      : [];
+    // 이전에 저장된 해당 영화의 리뷰들을 가져옴
+    const movieReviews = reviews[movieId] || [];
 
     const reviewListContainer = document.getElementById("review-list");
 
@@ -142,12 +140,18 @@ function posting() {
   // 이전에 저장된 리뷰들을 가져옴
   let reviews = localStorage.getItem("reviews")
     ? JSON.parse(localStorage.getItem("reviews"))
-    : [];
+    : {};
 
-  // 새로운 리뷰를 리뷰 배열에 추가
-  reviews.push(newReview);
+  // 해당 영화의 리뷰 배열 가져오기
+  let movieReviews = reviews[movieId] || [];
 
-  // 리뷰 배열을 로컬 스토리지에 저장
+  /// 새로운 리뷰를 해당 영화의 리뷰 배열에 추가
+  movieReviews.push(newReview);
+
+  // 해당 영화의 리뷰 배열을 업데이트
+  reviews[movieId] = movieReviews;
+
+  // 리뷰 데이터를 로컬 스토리지에 저장
   localStorage.setItem("reviews", JSON.stringify(reviews));
 
   // 리뷰를 리뷰 목록 컨테이너에 추가
