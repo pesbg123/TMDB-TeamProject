@@ -96,6 +96,5 @@ const main = () => {
 // 상세페이지에서 populer 카테고리로 넘어가는 함수
 const clickPopuler = document.getElementById('popular-category');
 clickPopuler.addEventListener('click', () => clickPopulerTab());
-
 const clickPopulerTab = () =>
   (window.location.href = `/main_page/main_pro8.html?domain=Popular`);

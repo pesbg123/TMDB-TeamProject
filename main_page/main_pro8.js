@@ -23,6 +23,7 @@ const NowPlaying = 'https://api.themoviedb.org/3/movie/now_playing?';
 const TopRated = 'https://api.themoviedb.org/3/movie/top_rated?';
 const Upcoming = 'https://api.themoviedb.org/3/movie/upcoming?';
 
+// 상세페이지에서 url로 넘겨준 domain = Popular를 가져옴
 const urlParamsJh = new URLSearchParams(window.location.search);
 const CP = urlParamsJh.get('domain');
 
@@ -152,7 +153,7 @@ nowPlayingTab.addEventListener('click', () => cardsRemove(NowPlaying));
 topRatedTab.addEventListener('click', () => cardsRemove(TopRated));
 upcomingTab.addEventListener('click', () => cardsRemove(Upcoming));
 
-// 상세페이지 카테고리
+// 일단 CP에 담아온 Popular 카테고리를 보여주는 함수
 if (CP === 'Popular') {
   cardsRemove(popular);
 } else {
