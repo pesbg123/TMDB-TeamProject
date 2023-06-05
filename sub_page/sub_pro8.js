@@ -14,8 +14,8 @@ const options = {
 const apiKey = "e9bb92f648d4191155d17c8e43f25e68&language=ko";
 
 const movieDetailsContainer = document.getElementById("movie-details");
-const searchBox = document.getElementById("search-box");
-const clickButton = document.getElementById("click-btn");
+const sub_searchBox = document.getElementById("search-box");
+const sub_searchBtn = document.getElementById("click-btn");
 const movieUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=ko`;
 
 fetch(movieUrl, options)
@@ -89,8 +89,8 @@ function getRatingColor(rate) {
   }
 }
 
-clickButton.addEventListener("click", renderMainpage);
-searchBox.addEventListener("keypress", (event) => {
+sub_searchBtn.addEventListener("click", renderMainpage);
+sub_searchBox.addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
     event.preventDefault();
     renderMainpage();
@@ -99,7 +99,7 @@ searchBox.addEventListener("keypress", (event) => {
 //메인 페이지랑 똑같습니다.
 
 function renderMainpage() {
-  const movieTitle = searchBox.value;
+  const movieTitle = sub_searchBox.value;
   return (window.location.href = `/main_page/main_pro8.html?title=${movieTitle}`);
 }
 //url 전달함수입니다.
