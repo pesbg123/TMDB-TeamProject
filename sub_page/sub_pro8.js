@@ -26,6 +26,14 @@ fetch(movieUrl, options)
 
     const movieImg = data["poster_path"];
 
+    const release_date = new Date(data["release_date"]).getFullYear();
+
+    const genres = data.genres.map((genre) => genre.name).join(", ");
+    const production_companies = data.production_companies
+      .map((company) => company.name)
+      .join(", ");
+    const runtime = data["runtime"];
+
     // 영화 데이터를 HTML에 표시
     let temp_html = `<div class="movie-box">
                         <div class="movie-boxin">
@@ -60,9 +68,14 @@ fetch(movieUrl, options)
                     <div class="details">
                       <h2>영화 정보</h2>
                       <p>${movieTitle}</p>
+                      <p>${release_date}</p>
+                      <p>${genres}</p>
+                      <p>${runtime} 분</p>
                       <p>${movieDesc}</p>
+                      <p>제작: ${production_companies}</p>
                     </div>
                     <div class="review-list-box">
+                      <h2>REVIEWS</h2>
                       <div class="mycards" id="review-list">
                         <p></p>
                     </div>
