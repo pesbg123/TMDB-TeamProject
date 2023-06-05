@@ -1,6 +1,6 @@
 // URL에서 id 추출<이재혁>
 const urlParamsJh = new URLSearchParams(window.location.search);
-const movieId = urlParamsJh.get('id');
+const movieId = urlParamsJh.get("id");
 
 const sub_searchBox = document.getElementById("search-box");
 const sub_searchBtn = document.getElementById("click-btn");
@@ -27,15 +27,15 @@ fetch(movieUrl, options)
     const movieDesc = data["overview"];
     const movieRate = Math.round(data["vote_average"] * 10) / 10;
 
-    const movieImg = data['poster_path'];
+    const movieImg = data["poster_path"];
 
-    const release_date = new Date(data['release_date']).getFullYear();
+    const release_date = new Date(data["release_date"]).getFullYear();
 
-    const genres = data.genres.map((genre) => genre.name).join(', ');
+    const genres = data.genres.map((genre) => genre.name).join(", ");
     const production_companies = data.production_companies
       .map((company) => company.name)
-      .join(', ');
-    const runtime = data['runtime'];
+      .join(", ");
+    const runtime = data["runtime"];
 
     // 영화 데이터를 HTML에 표시
     let temp_html = `<div class="movie-box">
@@ -88,11 +88,11 @@ fetch(movieUrl, options)
     movieDetailsContainer.innerHTML = temp_html;
 
     // 이전에 저장된 리뷰들을 가져옴
-    let reviews = localStorage.getItem('reviews')
-      ? JSON.parse(localStorage.getItem('reviews'))
+    let reviews = localStorage.getItem("reviews")
+      ? JSON.parse(localStorage.getItem("reviews"))
       : [];
 
-    const reviewListContainer = document.getElementById('review-list');
+    const reviewListContainer = document.getElementById("review-list");
 
     // 이전에 저장된 리뷰들을 HTML로 추가
     reviews.forEach((review) => {
@@ -108,7 +108,7 @@ fetch(movieUrl, options)
                         </div>`;
 
       // 리뷰를 리뷰 목록 컨테이너에 추가
-      reviewListContainer.insertAdjacentHTML('beforeend', reviewHTML);
+      reviewListContainer.insertAdjacentHTML("beforeend", reviewHTML);
     });
   });
 
@@ -130,8 +130,8 @@ function open_box() {
 }
 
 function posting() {
-  const userIpt = document.getElementById('userIpt').value;
-  const commentIpt = document.getElementById('commentIpt').value;
+  const userIpt = document.getElementById("userIpt").value;
+  const commentIpt = document.getElementById("commentIpt").value;
 
   // 새로운 리뷰 객체 생성
   const newReview = {
@@ -140,18 +140,18 @@ function posting() {
   };
 
   // 이전에 저장된 리뷰들을 가져옴
-  let reviews = localStorage.getItem('reviews')
-    ? JSON.parse(localStorage.getItem('reviews'))
+  let reviews = localStorage.getItem("reviews")
+    ? JSON.parse(localStorage.getItem("reviews"))
     : [];
 
   // 새로운 리뷰를 리뷰 배열에 추가
   reviews.push(newReview);
 
   // 리뷰 배열을 로컬 스토리지에 저장
-  localStorage.setItem('reviews', JSON.stringify(reviews));
+  localStorage.setItem("reviews", JSON.stringify(reviews));
 
   // 리뷰를 리뷰 목록 컨테이너에 추가
-  const reviewListContainer = document.getElementById('review-list');
+  const reviewListContainer = document.getElementById("review-list");
   const reviewHTML = `<div class="review-card">
                           <div class="review-card-body">
                             <header class="name-header">${userIpt}</header>
@@ -159,16 +159,16 @@ function posting() {
                             <p>${commentIpt}</p>
                           </div>
                         </div>`;
-  reviewListContainer.insertAdjacentHTML('beforeend', reviewHTML);
+  reviewListContainer.insertAdjacentHTML("beforeend", reviewHTML);
 
   // 입력 필드 초기화
-  document.getElementById('userIpt').value = '';
-  document.getElementById('commentIpt').value = '';
+  document.getElementById("userIpt").value = "";
+  document.getElementById("commentIpt").value = "";
 
   // comment 창 닫기
-  const reviewBox = document.getElementById('reviewBox');
-  reviewBox.style.display = 'none';
-  localStorage.setItem('reviewBoxDisplay', 'hidden');
+  const reviewBox = document.getElementById("reviewBox");
+  reviewBox.style.display = "none";
+  localStorage.setItem("reviewBoxDisplay", "hidden");
 }
 
 // 평점 색 구분
