@@ -1,6 +1,6 @@
-// URL에서 id 추출
-const urlParams = new URLSearchParams(window.location.search);
-const movieId = urlParams.get('id');
+// URL에서 id 추출<이재혁>
+const urlParamsJh = new URLSearchParams(window.location.search);
+const movieId = urlParamsJh.get('id');
 
 const sub_searchBox = document.getElementById("search-box");
 const sub_searchBtn = document.getElementById("click-btn");
@@ -27,7 +27,7 @@ fetch(movieUrl, options)
     const movieDesc = data["overview"];
     const movieRate = Math.round(data["vote_average"] * 10) / 10;
 
-    const movieImg = data["poster_path"];
+    const movieImg = data['poster_path'];
 
     const release_date = new Date(data['release_date']).getFullYear();
 
