@@ -29,13 +29,13 @@ fetch(movieUrl, options)
 
     const movieImg = data["poster_path"];
 
-    const release_date = new Date(data["release_date"]).getFullYear();
+    const release_date = new Date(data["release_date"]).getFullYear(); // JK API에서 개봉연도 추출
 
-    const genres = data.genres.map((genre) => genre.name).join(", ");
-    const production_companies = data.production_companies
+    const genres = data.genres.map((genre) => genre.name).join(", "); // JK 장르 추출
+    const production_companies = data.production_companies // JK 제작사 추출
       .map((company) => company.name)
       .join(", ");
-    const runtime = data["runtime"];
+    const runtime = data["runtime"]; // JK 상영시간 추출
 
     // 영화 데이터를 HTML에 표시
     let temp_html = `<div class="movie-box">
@@ -87,18 +87,18 @@ fetch(movieUrl, options)
                     `;
     movieDetailsContainer.innerHTML = temp_html;
 
-    // 이전에 저장된 리뷰들을 가져옴
+    // JK 이전에 저장된 리뷰들을 가져옴 (가져와서 붙일때 쓰는 용도)
     let reviews = localStorage.getItem("reviews")
       ? JSON.parse(localStorage.getItem("reviews"))
       : [];
 
     const reviewListContainer = document.getElementById("review-list");
 
-    // 이전에 저장된 리뷰들을 HTML로 추가
+    // JK 이전에 저장된 리뷰들을 HTML로 추가
     reviews.forEach((review) => {
       const { user, comment } = review;
 
-      // 리뷰 HTML 생성
+      // JK 리뷰 HTML 생성
       const reviewHTML = `<div class="review-card">
                           <div class="review-card-body">
                             <header class="name-header">${user}</header>
@@ -107,11 +107,11 @@ fetch(movieUrl, options)
                           </div>
                         </div>`;
 
-      // 리뷰를 리뷰 목록 컨테이너에 추가
+      // JK 리뷰를 리뷰 목록 컨테이너에 추가
       reviewListContainer.insertAdjacentHTML("beforeend", reviewHTML);
     });
   });
-
+// JK 리뷰창 열고 닫기
 function open_box() {
   const reviewBox = document.getElementById("reviewBox");
   const reviewBoxDisplay = localStorage.getItem("reviewBoxDisplay");
@@ -128,29 +128,29 @@ function open_box() {
       break;
   }
 }
-
+// JK 리뷰 생성 함수
 function posting() {
   const userIpt = document.getElementById("userIpt").value;
   const commentIpt = document.getElementById("commentIpt").value;
 
-  // 새로운 리뷰 객체 생성
+  // JK 새로운 리뷰 객체 생성
   const newReview = {
     user: userIpt,
     comment: commentIpt,
   };
 
-  // 이전에 저장된 리뷰들을 가져옴
+  // JK 이전에 저장된 리뷰들을 가져옴 (새 배열 추가하려고 가져오는 용도)
   let reviews = localStorage.getItem("reviews")
     ? JSON.parse(localStorage.getItem("reviews"))
     : [];
 
-  // 새로운 리뷰를 리뷰 배열에 추가
+  // JK 새로운 리뷰를 리뷰 배열에 추가
   reviews.push(newReview);
 
-  // 리뷰 배열을 로컬 스토리지에 저장
+  // JK 리뷰 배열을 로컬 스토리지에 저장
   localStorage.setItem("reviews", JSON.stringify(reviews));
 
-  // 리뷰를 리뷰 목록 컨테이너에 추가
+  // JK 리뷰를 리뷰 목록 컨테이너에 추가
   const reviewListContainer = document.getElementById("review-list");
   const reviewHTML = `<div class="review-card">
                           <div class="review-card-body">
@@ -161,11 +161,11 @@ function posting() {
                         </div>`;
   reviewListContainer.insertAdjacentHTML("beforeend", reviewHTML);
 
-  // 입력 필드 초기화
+  // JK 입력 필드 초기화
   document.getElementById("userIpt").value = "";
   document.getElementById("commentIpt").value = "";
 
-  // comment 창 닫기
+  // JK comment 창 닫기
   const reviewBox = document.getElementById("reviewBox");
   reviewBox.style.display = "none";
   localStorage.setItem("reviewBoxDisplay", "hidden");
