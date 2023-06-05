@@ -20,6 +20,13 @@ const movieDetailsContainer = document.getElementById("movie-details");
 
 const movieUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=ko`;
 
+// JK 이전에 저장된 리뷰들을 가져옴 (가져와서 붙일때 쓰는 용도)
+let reviews = localStorage.getItem("reviews")
+  ? JSON.parse(localStorage.getItem("reviews")) // 문자열->배열 변환
+  : [];
+
+const reviewListContainer = document.getElementById("review-list");
+
 fetch(movieUrl, options)
   .then((response) => response.json())
   .then((data) => {
@@ -86,13 +93,6 @@ fetch(movieUrl, options)
                 </div>
                     `;
     movieDetailsContainer.innerHTML = temp_html;
-
-    // JK 이전에 저장된 리뷰들을 가져옴 (가져와서 붙일때 쓰는 용도)
-    let reviews = localStorage.getItem("reviews")
-      ? JSON.parse(localStorage.getItem("reviews"))
-      : [];
-
-    const reviewListContainer = document.getElementById("review-list");
 
     // JK 이전에 저장된 리뷰들을 HTML로 추가
     reviews.forEach((review) => {
