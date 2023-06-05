@@ -2,6 +2,9 @@
 const urlParams = new URLSearchParams(window.location.search);
 const movieId = urlParams.get("id");
 
+const sub_searchBox = document.getElementById("search-box");
+const sub_searchBtn = document.getElementById("click-btn");
+
 const options = {
   method: "GET",
   headers: {
@@ -144,34 +147,5 @@ const main = () => {
 const clickPopuler = document.getElementById("popular-category");
 clickPopuler.addEventListener("click", () => clickPopulerTab());
 
-const clickPopulerTab = () =>
+const clickPopularTab = () =>
   (window.location.href = `/main_page/main_pro8.html?domain=Popular`);
-
-// 이전에 저장된 리뷰들을 가져옴
-let reviews = localStorage.getItem("reviews")
-  ? JSON.parse(localStorage.getItem("reviews"))
-  : [];
-
-function posting() {
-  const userIptValue = document.getElementById("userIpt").value;
-  const psWordIptValue = document.getElementById("psWordIpt").value;
-  const commentIptValue = document.getElementById("commentIpt").value;
-
-  // 새로운 리뷰 객체 생성
-  const newReview = {
-    user: userIptValue,
-    password: psWordIptValue,
-    comment: commentIptValue,
-  };
-
-  // 리뷰 배열에 새로운 리뷰 추가
-  reviews.push(newReview);
-
-  // 리뷰 배열을 localStorage에 저장
-  localStorage.setItem("reviews", JSON.stringify(reviews));
-
-  // 리뷰 작성 후 reviewBox 숨기기
-  const reviewBox = document.getElementById("reviewBox");
-  reviewBox.style.display = "none";
-  localStorage.setItem("reviewBoxDisplay", "hidden");
-}
