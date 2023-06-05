@@ -1,6 +1,6 @@
 // URL에서 id 추출
-const urlParams = new URLSearchParams(window.location.search);
-const movieId = urlParams.get('id');
+const urlParamsJh = new URLSearchParams(window.location.search);
+const movieId = urlParamsJh.get('id');
 
 const options = {
   method: 'GET',
@@ -79,7 +79,7 @@ function open_box() {
 }
 
 // 평점 색 구분
-function getRatingColor(rate) {
+const getRatingColor = (rate) => {
   if (rate >= 8) {
     return 'green';
   } else if (rate >= 5) {
@@ -87,8 +87,15 @@ function getRatingColor(rate) {
   } else {
     return 'red';
   }
-}
+};
 
 const main = () => {
   window.location.href = '/main_page/main_pro8.html';
 };
+
+// 상세페이지에서 populer 카테고리로 넘어가는 함수
+const clickPopuler = document.getElementById('popular-category');
+clickPopuler.addEventListener('click', () => clickPopulerTab());
+
+const clickPopulerTab = () =>
+  (window.location.href = `/main_page/main_pro8.html?domain=Popular`);

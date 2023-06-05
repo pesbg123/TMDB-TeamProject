@@ -23,6 +23,9 @@ const NowPlaying = 'https://api.themoviedb.org/3/movie/now_playing?';
 const TopRated = 'https://api.themoviedb.org/3/movie/top_rated?';
 const Upcoming = 'https://api.themoviedb.org/3/movie/upcoming?';
 
+const urlParamsJh = new URLSearchParams(window.location.search);
+const CP = urlParamsJh.get('domain');
+
 const url = (movieUrl) =>
   showMovieList(movieUrl + 'api_key=' + apiKey, options);
 
@@ -36,7 +39,7 @@ const showMovieList = (moviesUrl) => {
     .then((response) => response.json())
     .then((data) => {
       let rows = data['results'];
-
+      movieCardBox.textContent = '';
       rows.forEach((item) => {
         let movieTitle = item['title'];
         let movieDesc = item['overview'];
@@ -62,6 +65,7 @@ const showMovieList = (moviesUrl) => {
 
         const clickCardBox = document.getElementById(`cardPost-${movieId}`);
         clickCardBox.addEventListener('click', () => clickCard(movieId));
+
         const clickDescBox = document.getElementById(`desc-body-${movieId}`);
         clickDescBox.addEventListener('click', () => clickDesc(movieId));
       });
@@ -125,12 +129,13 @@ searchBox.addEventListener('keypress', (event) => {
     searchMovie();
   }
 });
+// 메인 페이지로 넘어가는 함수
 const main = () => {
   window.location.href = '/main_page/main_pro8.html';
 };
 mainH1.addEventListener('click', main);
 
-function getRatingColor(rate) {
+const getRatingColor = (rate) => {
   if (rate >= 8) {
     return 'green';
   } else if (rate >= 5) {
@@ -138,13 +143,18 @@ function getRatingColor(rate) {
   } else {
     return 'red';
   }
-}
+};
 
 url(TopRated);
-
+// 메인페이지 카테고리
 popularTab.addEventListener('click', () => cardsRemove(popular));
 nowPlayingTab.addEventListener('click', () => cardsRemove(NowPlaying));
 topRatedTab.addEventListener('click', () => cardsRemove(TopRated));
 upcomingTab.addEventListener('click', () => cardsRemove(Upcoming));
-// const clickDesc = (movieId) =>
-//   (window.location.href = `/sub_page/sub_pro8.html?id=${movieId}`);
+
+// 상세페이지 카테고리
+if (CP === 'Popular') {
+  cardsRemove(popular);
+} else {
+  console.log('error');
+}
