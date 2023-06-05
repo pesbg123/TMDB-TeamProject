@@ -89,7 +89,6 @@ function getRatingColor(rate) {
   }
 }
 
-<<<<<<< HEAD
 sub_searchBtn.addEventListener("click", renderMainpage);
 sub_searchBox.addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
@@ -104,8 +103,6 @@ function renderMainpage() {
   return (window.location.href = `/main_page/main_pro8.html?title=${movieTitle}`);
 }
 //url 전달함수입니다.
-=======
 const main = () => {
-  window.location.href = '/main_page/main_pro8.html';
+  window.location.href = "/main_page/main_pro8.html";
 };
->>>>>>> 5fcc407cbde4fd7b7dd5ad5e396f67aeaf16ca42
