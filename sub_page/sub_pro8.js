@@ -1,6 +1,6 @@
 // URL에서 id 추출
-const urlParamsJh = new URLSearchParams(window.location.search);
-const movieId = urlParamsJh.get("id");
+const urlParams = new URLSearchParams(window.location.search);
+const movieId = urlParams.get('id');
 
 const sub_searchBox = document.getElementById("search-box");
 const sub_searchBtn = document.getElementById("click-btn");
@@ -29,6 +29,14 @@ fetch(movieUrl, options)
 
     const movieImg = data["poster_path"];
 
+    const release_date = new Date(data['release_date']).getFullYear();
+
+    const genres = data.genres.map((genre) => genre.name).join(', ');
+    const production_companies = data.production_companies
+      .map((company) => company.name)
+      .join(', ');
+    const runtime = data['runtime'];
+
     // 영화 데이터를 HTML에 표시
     let temp_html = `<div class="movie-box">
                         <div class="movie-boxin">
@@ -42,7 +50,6 @@ fetch(movieUrl, options)
                                       movieRate
                                     )}">&nbsp;★${movieRate}</p></div>
                                 </div>
-                               
                                 <button onclick="open_box()" class="comment-postbtn">Comments</button>
                                 <div class="reviewBox" id="reviewBox" style="display: none;">
                                   <div class="userIpt">
@@ -60,8 +67,49 @@ fetch(movieUrl, options)
                                 </div>
                             </div>
                         </div>
-                    </div>`;
+                    </div>
+                    <div class="details">
+                      <h2>영화 정보</h2>
+                      <p>${movieTitle}</p>
+                      <p>${release_date}</p>
+                      <p>${genres}</p>
+                      <p>${runtime}분</p>
+                      <p>${movieDesc}</p>
+                      <p>제작: ${production_companies}</p>
+                    </div>
+                    <div
+                    <div class="review-list-box">
+                      <h2 class="reviewsTitle">REVIEWS</h2>
+                      <div class="review-list" id="review-list">
+                        <p></p>
+                    </div>
+                </div>
+                    `;
     movieDetailsContainer.innerHTML = temp_html;
+
+    // 이전에 저장된 리뷰들을 가져옴
+    let reviews = localStorage.getItem('reviews')
+      ? JSON.parse(localStorage.getItem('reviews'))
+      : [];
+
+    const reviewListContainer = document.getElementById('review-list');
+
+    // 이전에 저장된 리뷰들을 HTML로 추가
+    reviews.forEach((review) => {
+      const { user, comment } = review;
+
+      // 리뷰 HTML 생성
+      const reviewHTML = `<div class="review-card">
+                          <div class="review-card-body">
+                            <header class="name-header">${user}</header>
+                            <hr class="bar">
+                            <p>${comment}</p>
+                          </div>
+                        </div>`;
+
+      // 리뷰를 리뷰 목록 컨테이너에 추가
+      reviewListContainer.insertAdjacentHTML('beforeend', reviewHTML);
+    });
   });
 
 function open_box() {
@@ -79,6 +127,48 @@ function open_box() {
       localStorage.setItem("reviewBoxDisplay", "visible");
       break;
   }
+}
+
+function posting() {
+  const userIpt = document.getElementById('userIpt').value;
+  const commentIpt = document.getElementById('commentIpt').value;
+
+  // 새로운 리뷰 객체 생성
+  const newReview = {
+    user: userIpt,
+    comment: commentIpt,
+  };
+
+  // 이전에 저장된 리뷰들을 가져옴
+  let reviews = localStorage.getItem('reviews')
+    ? JSON.parse(localStorage.getItem('reviews'))
+    : [];
+
+  // 새로운 리뷰를 리뷰 배열에 추가
+  reviews.push(newReview);
+
+  // 리뷰 배열을 로컬 스토리지에 저장
+  localStorage.setItem('reviews', JSON.stringify(reviews));
+
+  // 리뷰를 리뷰 목록 컨테이너에 추가
+  const reviewListContainer = document.getElementById('review-list');
+  const reviewHTML = `<div class="review-card">
+                          <div class="review-card-body">
+                            <header class="name-header">${userIpt}</header>
+                            <hr class="bar">
+                            <p>${commentIpt}</p>
+                          </div>
+                        </div>`;
+  reviewListContainer.insertAdjacentHTML('beforeend', reviewHTML);
+
+  // 입력 필드 초기화
+  document.getElementById('userIpt').value = '';
+  document.getElementById('commentIpt').value = '';
+
+  // comment 창 닫기
+  const reviewBox = document.getElementById('reviewBox');
+  reviewBox.style.display = 'none';
+  localStorage.setItem('reviewBoxDisplay', 'hidden');
 }
 
 // 평점 색 구분
@@ -129,7 +219,6 @@ sub_searchBox.addEventListener("keypress", (event) => {
   }
 });
 //메인 페이지랑 똑같습니다.
-// a
 function renderMainpage() {
   const sub_movieTitle = sub_searchBox.value;
   return (window.location.href = `/main_page/main_pro8.html?title=${sub_movieTitle}`);
