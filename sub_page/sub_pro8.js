@@ -1,6 +1,9 @@
 // URL에서 id 추출
-const urlParams = new URLSearchParams(window.location.search);
-const movieId = urlParams.get("id");
+const urlParamsJh = new URLSearchParams(window.location.search);
+const movieId = urlParamsJh.get("id");
+
+const sub_searchBox = document.getElementById("search-box");
+const sub_searchBtn = document.getElementById("click-btn");
 
 const options = {
   method: "GET",
@@ -14,8 +17,7 @@ const options = {
 const apiKey = "e9bb92f648d4191155d17c8e43f25e68&language=ko";
 
 const movieDetailsContainer = document.getElementById("movie-details");
-const sub_searchBox = document.getElementById("search-box");
-const sub_searchBtn = document.getElementById("click-btn");
+
 const movieUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=ko`;
 
 fetch(movieUrl, options)
@@ -24,6 +26,7 @@ fetch(movieUrl, options)
     const movieTitle = data["title"];
     const movieDesc = data["overview"];
     const movieRate = Math.round(data["vote_average"] * 10) / 10;
+
     const movieImg = data["poster_path"];
 
     // 영화 데이터를 HTML에 표시
@@ -79,7 +82,7 @@ function open_box() {
 }
 
 // 평점 색 구분
-function getRatingColor(rate) {
+const getRatingColor = (rate) => {
   if (rate >= 8) {
     return "green";
   } else if (rate >= 5) {
@@ -87,7 +90,18 @@ function getRatingColor(rate) {
   } else {
     return "red";
   }
-}
+};
+
+const main = () => {
+  window.location.href = "/main_page/main_pro8.html";
+};
+
+// 상세페이지에서 populer 카테고리로 넘어가는 함수
+const clickPopuler = document.getElementById("popular-category");
+clickPopuler.addEventListener("click", () => clickPopulerTab());
+
+const clickPopulerTab = () =>
+  (window.location.href = `/main_page/main_pro8.html?domain=Popular`);
 
 sub_searchBtn.addEventListener("click", renderMainpage);
 sub_searchBox.addEventListener("keypress", (event) => {
@@ -99,10 +113,6 @@ sub_searchBox.addEventListener("keypress", (event) => {
 //메인 페이지랑 똑같습니다.
 
 function renderMainpage() {
-  const movieTitle = sub_searchBox.value;
-  return (window.location.href = `/main_page/main_pro8.html?title=${movieTitle}`);
+  const sub_movieTitle = sub_searchBox.value;
+  return (window.location.href = `/main_page/main_pro8.html?title=${sub_movieTitle}`);
 }
-//url 전달함수입니다.
-const main = () => {
-  window.location.href = "/main_page/main_pro8.html";
-};

@@ -10,6 +10,7 @@ const options = {
 const urlParamsSH = new URLSearchParams(window.location.search);
 const sub_movieTitle = urlParamsSH.get("title");
 //url 값 받아옵니다
+
 const apiKey = "e9bb92f648d4191155d17c8e43f25e68&language=ko";
 
 const movieCardBox = document.getElementById("cards-box");
@@ -26,6 +27,9 @@ const NowPlaying = "https://api.themoviedb.org/3/movie/now_playing?";
 const TopRated = "https://api.themoviedb.org/3/movie/top_rated?";
 const Upcoming = "https://api.themoviedb.org/3/movie/upcoming?";
 
+const urlParamsJh = new URLSearchParams(window.location.search);
+const CP = urlParamsJh.get("domain");
+
 const url = (movieUrl) =>
   showMovieList(movieUrl + "api_key=" + apiKey, options);
 
@@ -39,7 +43,7 @@ const showMovieList = (moviesUrl) => {
     .then((response) => response.json())
     .then((data) => {
       let rows = data["results"];
-
+      movieCardBox.textContent = "";
       rows.forEach((item) => {
         let movieTitle = item["title"];
         let movieDesc = item["overview"];
@@ -65,6 +69,7 @@ const showMovieList = (moviesUrl) => {
 
         const clickCardBox = document.getElementById(`cardPost-${movieId}`);
         clickCardBox.addEventListener("click", () => clickCard(movieId));
+
         const clickDescBox = document.getElementById(`desc-body-${movieId}`);
         clickDescBox.addEventListener("click", () => clickDesc(movieId));
       });
@@ -77,6 +82,9 @@ const clickDesc = (movieId) =>
   (window.location.href = `/sub_page/sub_pro8.html?id=${movieId}`);
 
 const searchMovie = (searchBoxValue) => {
+  //const searchBoxValue = searchBox.value; 이부분 미리 변수로 받아와서 지웠습니다.
+  //변수로 searchBoxValue를 받아와서 searchMovie가 실행됩니다.
+
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=ko&query=${searchBoxValue}`;
 
   fetch(searchUrl, options)
@@ -138,7 +146,7 @@ const main = () => {
 };
 mainH1.addEventListener("click", main);
 
-function getRatingColor(rate) {
+const getRatingColor = (rate) => {
   if (rate >= 8) {
     return "green";
   } else if (rate >= 5) {
@@ -146,16 +154,22 @@ function getRatingColor(rate) {
   } else {
     return "red";
   }
-}
+};
 
 url(TopRated);
-
+// 메인페이지 카테고리
 popularTab.addEventListener("click", () => cardsRemove(popular));
 nowPlayingTab.addEventListener("click", () => cardsRemove(NowPlaying));
 topRatedTab.addEventListener("click", () => cardsRemove(TopRated));
 upcomingTab.addEventListener("click", () => cardsRemove(Upcoming));
-// const clickDesc = (movieId) =>
-//   (window.location.href = `/sub_page/sub_pro8.html?id=${movieId}`);
+
+// 상세페이지 카테고리
+if (CP === "Popular") {
+  cardsRemove(popular);
+} else {
+  console.log("error");
+}
+console.log(sub_movieTitle);
 
 if (sub_movieTitle !== null) {
   movieCardBox.textContent = "";
