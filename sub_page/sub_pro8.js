@@ -65,24 +65,34 @@ fetch(movieUrl, options)
                     <div class="review-list-box">
                       <div class="mycards" id="review-list">
                         <p></p>
-                        <div class="review-card">
-                            <div class="review-card-body">
-                              <header class="name-header">익명</header>
-                              <hr class="bar">
-                              <p>리뷰 남기기 샘플</p>
-                            </div>
-                        </div>
-                        <div class="review-card">
-                            <div class="review-card-body">
-                              <header class="name-header">익명</header>
-                              <hr class="bar">
-                              <p>리뷰 남기기 샘플</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
                     `;
     movieDetailsContainer.innerHTML = temp_html;
+
+    // 이전에 저장된 리뷰들을 가져옴
+    let reviews = localStorage.getItem("reviews")
+      ? JSON.parse(localStorage.getItem("reviews"))
+      : [];
+
+    const reviewListContainer = document.getElementById("review-list");
+
+    // 이전에 저장된 리뷰들을 HTML로 추가
+    reviews.forEach((review) => {
+      const { user, comment } = review;
+
+      // 리뷰 HTML 생성
+      const reviewHTML = `<div class="review-card">
+                          <div class="review-card-body">
+                            <header class="name-header">${user}</header>
+                            <hr class="bar">
+                            <p>${comment}</p>
+                          </div>
+                        </div>`;
+
+      // 리뷰를 리뷰 목록 컨테이너에 추가
+      reviewListContainer.insertAdjacentHTML("beforeend", reviewHTML);
+    });
   });
 
 function open_box() {
