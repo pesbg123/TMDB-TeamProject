@@ -7,6 +7,10 @@ const options = {
   },
 };
 
+const urlParamsSH = new URLSearchParams(window.location.search);
+const sub_movieTitle = urlParamsSH.get('title');
+//url 값 받아옵니다
+
 const apiKey = 'e9bb92f648d4191155d17c8e43f25e68&language=ko';
 
 const movieCardBox = document.getElementById('cards-box');
@@ -17,15 +21,6 @@ const upcomingTab = document.getElementById('upcoming-category');
 const clickButton = document.getElementById('click-btn');
 const searchBox = document.getElementById('search-box');
 const mainH1 = document.getElementById('mainH1');
-
-const popular = 'https://api.themoviedb.org/3/movie/popular?';
-const NowPlaying = 'https://api.themoviedb.org/3/movie/now_playing?';
-const TopRated = 'https://api.themoviedb.org/3/movie/top_rated?';
-const Upcoming = 'https://api.themoviedb.org/3/movie/upcoming?';
-
-// 상세페이지에서 url로 넘겨준 domain = Popular를 가져옴
-const urlParamsJh = new URLSearchParams(window.location.search);
-const CP = urlParamsJh.get('domain');
 
 const url = (movieUrl) =>
   showMovieList(movieUrl + 'api_key=' + apiKey, options);
@@ -78,8 +73,10 @@ const clickCard = (movieId) => alert(`id: ${movieId}`);
 const clickDesc = (movieId) =>
   (window.location.href = `/sub_page/sub_pro8.html?id=${movieId}`);
 
-const searchMovie = () => {
-  const searchBoxValue = searchBox.value;
+const searchMovie = (searchBoxValue) => {
+  //const searchBoxValue = searchBox.value; 이부분 미리 변수로 받아와서 지웠습니다.
+  //변수로 searchBoxValue를 받아와서 searchMovie가 실행됩니다.
+
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=ko&query=${searchBoxValue}`;
 
   fetch(searchUrl, options)
@@ -123,14 +120,19 @@ const searchMovie = () => {
     });
 };
 
-clickButton.addEventListener('click', searchMovie);
+clickButton.addEventListener('click', () => {
+  const searchBoxValue = searchBox.value;
+  searchMovie(searchBoxValue);
+});
 searchBox.addEventListener('keypress', (event) => {
   if (event.key === 'Enter') {
     event.preventDefault();
-    searchMovie();
+    const searchBoxValue = searchBox.value;
+    searchMovie(searchBoxValue);
   }
 });
-// 메인 페이지로 넘어가는 함수
+//searchMovie함수가 변수를 받는 형식으로 바꿨습니다. 메인페이지와 서브페이지 둘다
+//검색 기능을 쓰기때문에 변수차이로 로직이 구성됩니다.
 const main = () => {
   window.location.href = '/main_page/main_pro8.html';
 };
@@ -153,9 +155,17 @@ nowPlayingTab.addEventListener('click', () => cardsRemove(NowPlaying));
 topRatedTab.addEventListener('click', () => cardsRemove(TopRated));
 upcomingTab.addEventListener('click', () => cardsRemove(Upcoming));
 
-// 일단 CP에 담아온 Popular 카테고리를 보여주는 함수
+// 상세페이지 카테고리
 if (CP === 'Popular') {
   cardsRemove(popular);
 } else {
   console.log('error');
 }
+console.log(sub_movieTitle);
+
+if (sub_movieTitle !== null) {
+  movieCardBox.textContent = '';
+  searchMovie(sub_movieTitle);
+}
+//sub_movieTitle이 서브페이지에서 검색했을 때 변수로 오는 값입니다.
+//값이 비어있지 않다면 메인페이지에 서브페이지에서 검색한 값을 보여줍니다.

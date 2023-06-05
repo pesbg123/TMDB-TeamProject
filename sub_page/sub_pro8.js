@@ -2,6 +2,9 @@
 const urlParamsJh = new URLSearchParams(window.location.search);
 const movieId = urlParamsJh.get('id');
 
+const sub_searchBox = document.getElementById('search-box');
+const sub_searchBtn = document.getElementById('click-btn');
+
 const options = {
   method: 'GET',
   headers: {
@@ -96,5 +99,20 @@ const main = () => {
 // 상세페이지에서 populer 카테고리로 넘어가는 함수
 const clickPopuler = document.getElementById('popular-category');
 clickPopuler.addEventListener('click', () => clickPopulerTab());
+
 const clickPopulerTab = () =>
   (window.location.href = `/main_page/main_pro8.html?domain=Popular`);
+
+sub_searchBtn.addEventListener('click', renderMainpage);
+sub_searchBox.addEventListener('keypress', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    renderMainpage();
+  }
+});
+//메인 페이지랑 똑같습니다.
+
+function renderMainpage() {
+  const sub_movieTitle = sub_searchBox.value;
+  return (window.location.href = `/main_page/main_pro8.html?title=${sub_movieTitle}`);
+}
