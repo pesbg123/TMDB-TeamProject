@@ -77,9 +77,10 @@ fetch(movieUrl, options)
                       <p>${movieDesc}</p>
                       <p>제작: ${production_companies}</p>
                     </div>
+                    <div
                     <div class="review-list-box">
-                      <h2>REVIEWS</h2>
-                      <div class="mycards" id="review-list">
+                      <h2 class="reviewsTitle">REVIEWS</h2>
+                      <div class="review-list" id="review-list">
                         <p></p>
                     </div>
                 </div>
@@ -143,9 +144,9 @@ const main = () => {
   window.location.href = "/main_page/main_pro8.html";
 };
 
-// 상세페이지에서 populer 카테고리로 넘어가는 함수
-const clickPopuler = document.getElementById("popular-category");
-clickPopuler.addEventListener("click", () => clickPopulerTab());
+// 상세페이지에서 popular 카테고리로 넘어가는 함수
+const clickPopular = document.getElementById("popular-category");
+clickPopular.addEventListener("click", () => clickPopularTab());
 
 const clickPopularTab = () =>
   (window.location.href = `/main_page/main_pro8.html?domain=Popular`);

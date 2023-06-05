@@ -266,6 +266,11 @@ nav .Carrot-title {
   overflow: auto;
 }
 
+.reviewsTitle {
+  color: white;
+  margin-left: 20px;
+}
+
 .review-card {
   background-color: rgb(78, 78, 78);
   color: white;
