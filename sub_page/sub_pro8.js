@@ -88,3 +88,7 @@ function getRatingColor(rate) {
     return 'red';
   }
 }
+
+const main = () => {
+  window.location.href = '/main_page/main_pro8.html';
+};

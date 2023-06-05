@@ -125,9 +125,8 @@ searchBox.addEventListener('keypress', (event) => {
     searchMovie();
   }
 });
-
 const main = () => {
-  window.location.reload();
+  window.location.href = '/main_page/main_pro8.html';
 };
 mainH1.addEventListener('click', main);
 
