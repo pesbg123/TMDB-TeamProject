@@ -96,11 +96,11 @@ const main = () => {
   window.location.href = '/main_page/main_pro8.html';
 };
 
-// 상세페이지에서 populer 카테고리로 넘어가는 함수
-const clickPopuler = document.getElementById('popular-category');
-clickPopuler.addEventListener('click', () => clickPopulerTab());
+// 상세페이지에서 popular 카테고리로 넘어가는 함수
+const clickPopular = document.getElementById('popular-category');
+clickPopular.addEventListener('click', () => clickPopularTab());
 
-const clickPopulerTab = () =>
+const clickPopularTab = () =>
   (window.location.href = `/main_page/main_pro8.html?domain=Popular`);
 
 sub_searchBtn.addEventListener('click', renderMainpage);
