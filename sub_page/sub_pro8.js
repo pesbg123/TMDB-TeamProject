@@ -1,33 +1,33 @@
 // URL에서 id 추출
 const urlParamsJh = new URLSearchParams(window.location.search);
-const movieId = urlParamsJh.get('id');
+const movieId = urlParamsJh.get("id");
 
-const sub_searchBox = document.getElementById('search-box');
-const sub_searchBtn = document.getElementById('click-btn');
+const sub_searchBox = document.getElementById("search-box");
+const sub_searchBtn = document.getElementById("click-btn");
 
 const options = {
-  method: 'GET',
+  method: "GET",
   headers: {
-    accept: 'application/json',
+    accept: "application/json",
     Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlOWJiOTJmNjQ4ZDQxOTExNTVkMTdjOGU0M2YyNWU2OCIsInN1YiI6IjY0NzIxZmM1ZGQ3MzFiMDBjMGJhYWU5MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Y3E-hG7rguBwXeMYwJDAuXRxZp8nBSidYbJb6AFhSf0',
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlOWJiOTJmNjQ4ZDQxOTExNTVkMTdjOGU0M2YyNWU2OCIsInN1YiI6IjY0NzIxZmM1ZGQ3MzFiMDBjMGJhYWU5MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Y3E-hG7rguBwXeMYwJDAuXRxZp8nBSidYbJb6AFhSf0",
   },
 };
 
-const apiKey = 'e9bb92f648d4191155d17c8e43f25e68&language=ko';
+const apiKey = "e9bb92f648d4191155d17c8e43f25e68&language=ko";
 
-const movieDetailsContainer = document.getElementById('movie-details');
+const movieDetailsContainer = document.getElementById("movie-details");
 
 const movieUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=ko`;
 
 fetch(movieUrl, options)
   .then((response) => response.json())
   .then((data) => {
-    const movieTitle = data['title'];
-    const movieDesc = data['overview'];
-    const movieRate = Math.round(data['vote_average'] * 10) / 10;
+    const movieTitle = data["title"];
+    const movieDesc = data["overview"];
+    const movieRate = Math.round(data["vote_average"] * 10) / 10;
 
-    const movieImg = data['poster_path'];
+    const movieImg = data["poster_path"];
 
     // 영화 데이터를 HTML에 표시
     let temp_html = `<div class="movie-box">
@@ -65,18 +65,18 @@ fetch(movieUrl, options)
   });
 
 function open_box() {
-  const reviewBox = document.getElementById('reviewBox');
-  const reviewBoxDisplay = localStorage.getItem('reviewBoxDisplay');
+  const reviewBox = document.getElementById("reviewBox");
+  const reviewBoxDisplay = localStorage.getItem("reviewBoxDisplay");
 
   switch (reviewBoxDisplay) {
-    case 'visible':
-      reviewBox.style.display = 'none';
-      localStorage.setItem('reviewBoxDisplay', 'hidden');
+    case "visible":
+      reviewBox.style.display = "none";
+      localStorage.setItem("reviewBoxDisplay", "hidden");
       break;
-    case 'hidden':
+    case "hidden":
     default:
-      reviewBox.style.display = 'block';
-      localStorage.setItem('reviewBoxDisplay', 'visible');
+      reviewBox.style.display = "block";
+      localStorage.setItem("reviewBoxDisplay", "visible");
       break;
   }
 }
@@ -84,28 +84,46 @@ function open_box() {
 // 평점 색 구분
 const getRatingColor = (rate) => {
   if (rate >= 8) {
-    return 'green';
+    return "green";
   } else if (rate >= 5) {
-    return 'orange';
+    return "orange";
   } else {
-    return 'red';
+    return "red";
   }
 };
 
 const main = () => {
-  window.location.href = '/main_page/main_pro8.html';
+  window.location.href = "/main_page/main_pro8.html";
 };
 
-// 상세페이지에서 popular 카테고리로 넘어가는 함수
-const clickPopular = document.getElementById('popular-category');
-clickPopular.addEventListener('click', () => clickPopularTab());
+// 상세페이지에서 카테고리들로 넘어가는 함수
+const clickPopular = document.getElementById("popular-category");
+clickPopular.addEventListener("click", () => clickPopularTab());
 
 const clickPopularTab = () =>
   (window.location.href = `/main_page/main_pro8.html?domain=Popular`);
 
-sub_searchBtn.addEventListener('click', renderMainpage);
-sub_searchBox.addEventListener('keypress', (event) => {
-  if (event.key === 'Enter') {
+const clickNowPlaying = document.getElementById("nowplaying-category");
+clickNowPlaying.addEventListener("click", () => clickNowPlayingTab());
+
+const clickNowPlayingTab = () =>
+  (window.location.href = `/main_page/main_pro8.html?domain=NowPlaying`);
+
+const clickTopRated = document.getElementById("toprate-category");
+clickTopRated.addEventListener("click", () => clickTopRatedTab());
+
+const clickTopRatedTab = () =>
+  (window.location.href = `/main_page/main_pro8.html?domain=TopRated`);
+
+const clickUpcoming = document.getElementById("upcoming-category");
+clickUpcoming.addEventListener("click", () => clickUpcomingTab());
+
+const clickUpcomingTab = () =>
+  (window.location.href = `/main_page/main_pro8.html?domain=Upcoming`);
+
+sub_searchBtn.addEventListener("click", renderMainpage);
+sub_searchBox.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
     event.preventDefault();
     renderMainpage();
   }
