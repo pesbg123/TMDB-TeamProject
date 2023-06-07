@@ -122,7 +122,7 @@ nav .Carrot-title {
 
 .footer img {
   height: 60px;
-  margin-left: 2rem;
+  margin-left: auto;
   margin-top: 4rem;
   background-color: white;
   border-radius: 30px;
@@ -131,7 +131,7 @@ nav .Carrot-title {
 .footer button {
   text-align: center;
   margin-top: 6rem;
-  margin-right: 2rem;
+  margin-right: auto;
   width: 160px;
   height: 30px;
   border-radius: 30px;
