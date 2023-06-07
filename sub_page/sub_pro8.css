@@ -1,7 +1,5 @@
 /* 구글폰트 사용 */
 @import url('https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
-
 /* body의 전체적인 색 지정 */
 body {
   margin: 0;
@@ -92,7 +90,7 @@ nav {
   font-family: 'Cherry Bomb One', cursive;
   font-size: 2rem;
   display: flex;
-  margin-left: 4%;
+  margin-left: 3%;
 }
 
 nav .category {
@@ -101,65 +99,28 @@ nav .category {
 }
 
 nav .Carrot-title {
-  margin: 1rem;
+  margin: 3rem;
   color: rgb(191, 51, 23);
 }
 /* 서브페이지 영화 이미지, 댓글작성 */
 .movie-header {
   background-color: transparent;
-  height: 48rem;
+  height: 50rem;
   background-position: center;
   background-size: cover;
 }
-
-.footer {
-  margin-top: 50px;
-  height: 200px;
-  width: 100%;
-  background-color: rgb(43, 42, 42);
-  display: flex;
-}
-
-.footer img {
-  height: 60px;
-  margin-left: auto;
-  margin-top: 4rem;
-  background-color: white;
-  border-radius: 30px;
-}
-
-.footer button {
-  text-align: center;
-  margin-top: 6rem;
-  margin-right: auto;
-  width: 160px;
-  height: 30px;
-  border-radius: 30px;
-  font-family: 'Jua', sans-serif;
-  font-size: 30px;
-  background-color: gray;
-}
-
-.footer button:hover {
-  box-shadow: 0 200px 0 0 rgba(57, 55, 55, 0.25) inset,
-    0 200px 0 0 rgba(57, 55, 55, 0.25) inset;
-}
+/* 
+.movie-header .input-group {
+} */
 
 .movie-box {
   background-color: transparent;
   margin-top: 20rem;
   height: 300px;
-  width: 80%;
-  background-color: transparent;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .movie-box .movie-boxin {
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 30px;
   display: flex;
   backdrop-filter: blur(10px);
 }
@@ -185,15 +146,12 @@ nav .Carrot-title {
 }
 
 .movie-box .movie-boxin .title-comment .movie-title {
-  background-color: transparent;
-  margin-top: 16px;
-  border: 1px solid black;
+  background-color: blanchedalmond;
   border-radius: 10px;
   font-size: 20px;
-  width: 600px;
-  height: 120px;
-  margin-left: 100px;
-  font-family: 'Jua', sans-serif;
+  width: 700px;
+  height: 100px;
+  margin-top: 50px;
 }
 /* 평점조건마다 색입히기 */
 .movie-rate {
@@ -218,14 +176,11 @@ nav .Carrot-title {
 .movie-box .movie-boxin .title-comment .comment-postbtn {
   width: 300px;
   height: 100px;
-  margin-top: 50px;
-  margin-right: 50%;
-  margin-left: 35%;
+  margin-top: 25px;
   border-radius: 30px;
-  border: 1px solid rgb(3, 3, 3);
+  border: 1px solid white;
   font-size: 30px;
   font-family: 'Cherry Bomb One', cursive;
-  background-color: transparent;
 }
 .comment-postbtn:hover {
   box-shadow: 0 200px 0 0 rgba(57, 55, 55, 0.25) inset,
@@ -239,9 +194,8 @@ nav .Carrot-title {
   border-radius: 10px;
   padding: 20px;
   margin: 1rem;
-  margin-left: 135px;
-  margin-right: 50%;
-  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .userIpt {
@@ -295,42 +249,29 @@ nav .Carrot-title {
   background-color: rgb(63, 63, 63);
   color: white;
   width: 70%;
+  height: 400px;
   margin: auto;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 50px;
   border-radius: 10px;
-  padding: 20px;
-}
-
-.details h2 {
-  font-family: 'Jua', sans-serif;
-  font-size: 30px;
-  color: black;
-}
-
-.details p {
-  font-family: 'Jua', sans-serif;
-  font-size: 25px;
+  padding: 30px;
 }
 
 .review-list-box {
   background-color: rgb(61, 61, 61);
   width: 70%;
-  height: 800px;
+  height: 500px;
   margin: auto;
   border-radius: 10px;
   overflow: auto;
 }
 
 .reviewsTitle {
-  font-family: 'Jua', sans-serif;
-  color: black;
+  color: white;
   margin-left: 20px;
-  font-size: 30px;
 }
 
 .review-card {
-  font-family: 'Jua', sans-serif;
   background-color: rgb(78, 78, 78);
   color: white;
   width: 90%;
@@ -339,16 +280,4 @@ nav .Carrot-title {
   border-radius: 10px;
   padding: 20px;
   margin: 20px 20px 20px 20px;
-}
-
-.review-card .review-card-body .name-header {
-  font-size: 28px;
-}
-
-.review-card .review-card-body p {
-  font-size: 25px;
-}
-
-.movie-details {
-  height: 100%;
 }
