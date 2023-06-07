@@ -106,6 +106,11 @@ fetch(movieUrl, options)
       (review) => review.id === currentMovieId
     );
 
+    // JK 현재 페이지의 movieId와 일치하는 리뷰들만 필터링
+    const filteredReviews = reviews.filter(
+      (review) => review.id === currentMovieId
+    );
+
     // JK 필터링된 리뷰들을 HTML로 추가  + SH Uid 추가
     filteredReviews.forEach((review) => {
       const { user, comment, Uid } = review;
