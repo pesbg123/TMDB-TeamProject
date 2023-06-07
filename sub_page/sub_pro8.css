@@ -137,7 +137,7 @@ nav .Carrot-title {
   border-radius: 30px;
   font-family: "Jua", sans-serif;
   font-size: 20px;
-  background-color: transparent;
+  background-color: gray;
 }
 
 .footer button:hover {
@@ -147,37 +147,53 @@ nav .Carrot-title {
 
 .movie-box {
   background-color: transparent;
-  max-width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 5rem;
+  margin-top: 30px;
+  height: 500px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.movie-box .movie-img {
-  background-color: transparent;
+.movie-box .movie-boxin {
+  width: 100%;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 30px;
+  display: flex;
 }
-.movie-box .movie-img img {
-  width: 300px;
-  height: 400px;
+
+.movie-box .movie-boxin .movie-img {
+  width: 350px;
+  height: 500px;
+  margin-right: 3rem;
+  margin-left: auto;
+}
+.movie-box .movie-boxin .movie-img img {
+  width: 100%;
   border-radius: 10px;
   border: 0.1px solid rgb(92, 90, 90);
 }
 
-.movie-box .title-comment {
+.movie-box .movie-boxin .title-comment {
   background-color: transparent;
-  width: 40%;
+  width: 700px;
+  margin-right: auto;
+  margin-left: 30px;
   text-align: center;
-  margin-left: 2rem;
 }
 
-.movie-box .title-comment .movie-title {
+.movie-box .movie-boxin .title-comment .movie-title {
   background-color: transparent;
   color: white;
+  margin-top: 16px;
+  border: 1px solid black;
+  border-radius: 10px;
   font-size: 17px;
-  width: 100%;
+  width: 600px;
   height: 120px;
+  margin-left: 100px;
   font-family: "Jua", sans-serif;
-  margin-top: 6rem;
 }
 /* 평점조건마다 색입히기 */
 .movie-rate {
@@ -199,16 +215,18 @@ nav .Carrot-title {
 .movie-rate p.red {
   color: red;
 }
-.movie-box .title-comment .comment-postbtn {
-  width: 200px;
+.movie-box .movie-boxin .title-comment .comment-postbtn {
+  width: 300px;
   height: 50px;
+  margin-top: 50px;
+  margin-right: 50%;
+  margin-left: 35%;
   border-radius: 30px;
   border: 1px solid rgb(3, 3, 3);
   font-size: 30px;
   font-family: "Cherry Bomb One", cursive;
   background-color: tomato;
   color: white;
-  margin-top: 5rem;
 }
 .comment-postbtn:hover {
   box-shadow: 0 200px 0 0 rgba(57, 55, 55, 0.25) inset,
@@ -217,8 +235,8 @@ nav .Carrot-title {
 
 .reviewBox {
   background-color: gray;
-  width: 300px;
-  height: 900px;
+  width: 400px;
+  height: 300px;
   border-radius: 10px;
   padding: 20px;
   margin: 1rem;
@@ -230,7 +248,7 @@ nav .Carrot-title {
 .userIpt {
   font-family: "Cherry Bomb One", cursive;
   width: 100%;
-  height: 40px;
+  height: 50px;
   font-size: 25px;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -248,7 +266,7 @@ nav .Carrot-title {
 .commentIpt {
   font-family: "Cherry Bomb One", cursive;
   width: 100%;
-  height: 300px;
+  height: 100px;
   font-size: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -262,10 +280,10 @@ nav .Carrot-title {
   margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
-  background-color: tomato;
+  background-color: orange;
   border: 2px solid var(--primay-color);
-  border-radius: 10px;
-  color: white;
+  border-radius: 20px;
+  color: black;
   font-size: 25px;
 }
 
@@ -277,7 +295,7 @@ nav .Carrot-title {
 .details {
   background-color: rgb(63, 63, 63);
   color: white;
-  width: 63%;
+  width: 70%;
   margin: auto;
   margin-top: 50px;
   margin-bottom: 50px;
@@ -334,40 +352,4 @@ nav .Carrot-title {
 
 .movie-details {
   height: 100%;
-}
-
-#modal {
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: none;
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  border-radius: 10px;
-  width: 30%;
-  height: 600px;
-}
-
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
 }
