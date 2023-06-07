@@ -103,7 +103,7 @@ fetch(movieUrl, options)
 
     // JK 필터링된 리뷰들을 HTML로 추가
     filteredReviews.forEach((review) => {
-      const { user, comment } = review;
+      const { user, comment, Uid } = review;
 
       // JK 리뷰 HTML 생성
       const reviewHTML = `<div class="review-card">
@@ -111,6 +111,7 @@ fetch(movieUrl, options)
                         <header class="name-header">${user}</header>
                         <hr class="bar">
                         <p>${comment}</p>
+                        <button class="button" onclick='deleteReview(${Uid})'>삭제</button>
                       </div>
                     </div>`;
 
@@ -168,6 +169,7 @@ function posting() {
                             <header class="name-header">${userIpt}</header>
                             <hr class="bar">
                             <p>${commentIpt}</p>
+                            <button class="button" onclick='deleteReview(${movieUID})'>삭제</button>
                           </div>
                         </div>`;
   reviewList.insertAdjacentHTML("beforeend", reviewHTML);
@@ -176,6 +178,7 @@ function posting() {
   const reviewBox = document.getElementById("reviewBox");
   reviewBox.style.display = "none";
   localStorage.setItem("reviewBoxDisplay", "hidden");
+  location.reload(true);
 }
 
 // 평점 색 구분
@@ -220,4 +223,10 @@ sub_searchBox.addEventListener("keypress", (event) => {
 function renderMainpage() {
   const sub_movieTitle = sub_searchBox.value;
   return (window.location.href = `/main_page/main_pro8.html?title=${sub_movieTitle}`);
+}
+//SH 삭제 기능 , 기존
+function deleteReview(Uid) {
+  const newReview = reviews.filter((element) => element.Uid !== Uid);
+  localStorage.setItem("reviews", JSON.stringify(newReview));
+  location.reload(true);
 }
