@@ -63,19 +63,24 @@ fetch(movieUrl, options)
                                       movieRate
                                     )}">&nbsp;★${movieRate}</p></div>
                                 </div>
-                                <button onclick="open_box()" class="comment-postbtn">Comments</button>
-                                <div class="reviewBox" id="reviewBox" style="display: none;">
-                                  <div class="userIpt">
-                                    <input type="text" class="userIpt" id="userIpt" placeholder="UserName">
-                                  </div>
-                                  <div class="psWordIpt">
-                                    <input type="text" class="psWordIpt" id="psWordIpt" placeholder="PW">
-                                  </div>
-                                  <div class="commentIpt">
-                                    <textarea id="commentIpt" class="commentIpt" placeholder="a review comment"></textarea>
-                                  </div>
-                                  <div class="reviewBtns">
-                                    <button onclick="posting()" type="button" class="postBtn">Save</button>
+                                <button onclick="open_box()" class="comment-postbtn" id="open-modal-btn">Comments</button>
+                                <div id="modal">
+                                  <div class="modal-content" id="reviewBox" style="display: none;">
+                                  <span class="close" onclick="closeModal()">&times;</span>
+                                    <h2>🥕리뷰를 작성 해 보세요!🥕</h2>
+                                      <div class="userIpt">
+                                        <input type="text" class="userIpt" id="userIpt" placeholder="UserName">
+                                      </div>
+                                      <div class="psWordIpt">
+                                        <input type="text" class="psWordIpt" id="psWordIpt" placeholder="PW">
+                                      </div>
+                                      <div class="commentIpt">
+                                        <textarea id="commentIpt" class="commentIpt" placeholder="a review comment"></textarea>
+                                      </div>
+                                      <div class="reviewBtns">
+                                        <button onclick="posting()" type="button" class="postBtn">Save</button>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                             </div>
@@ -121,21 +126,19 @@ fetch(movieUrl, options)
   });
 // JK 리뷰창 열고 닫기
 function open_box() {
+  // 모달창 열기 위한 버튼
+  const modal = document.getElementById("modal");
   const reviewBox = document.getElementById("reviewBox");
-  const reviewBoxDisplay = localStorage.getItem("reviewBoxDisplay");
-
-  switch (reviewBoxDisplay) {
-    case "visible":
-      reviewBox.style.display = "none";
-      localStorage.setItem("reviewBoxDisplay", "hidden");
-      break;
-    case "hidden":
-    default:
-      reviewBox.style.display = "block";
-      localStorage.setItem("reviewBoxDisplay", "visible");
-      break;
-  }
+  modal.style.display = "block";
+  reviewBox.style.display = "block";
 }
+
+// 모달창 닫기
+function closeModal() {
+  const modal = document.getElementById("modal");
+  modal.style.display = "none";
+}
+
 // JK 리뷰 생성 함수 + SH UID 생성
 function posting() {
   const userIpt = document.getElementById("userIpt").value;
