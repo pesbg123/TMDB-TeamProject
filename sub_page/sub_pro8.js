@@ -28,11 +28,6 @@ console.log(Array.isArray(reviews));
 // JK 현재 페이지의 movieId 값
 const currentMovieId = movieId;
 
-// JK 현재 페이지의 movieId와 일치하는 리뷰들만 필터링
-const filteredReviews = reviews.filter(
-  (review) => review.id === currentMovieId
-);
-
 fetch(movieUrl, options)
   .then((response) => response.json())
   .then((data) => {
@@ -52,59 +47,64 @@ fetch(movieUrl, options)
 
     // 영화 데이터를 HTML에 표시
     let temp_html = `<div class="movie-box">
-                        <div class="movie-boxin">
-                            <div class="movie-img">
-                                <img src="https://image.tmdb.org/t/p/w500${movieImg}" class="movie-img" />
+                        <div class="movie-img">
+                          <img src="https://image.tmdb.org/t/p/w500${movieImg}" class="movie-img" />
+                        </div>
+                        <div class="title-comment">
+                          <div class="movie-title">
+                            <h1>${movieTitle}</h1>
+                            <div class="movie-rate">평점:<p class="${getRatingColor(
+                              movieRate
+                            )}">&nbsp;★${movieRate}</p>
                             </div>
-                            <div class="title-comment">
-                                <div class="movie-title">
-                                    <h1>${movieTitle}</h1>
-                                    <div class="movie-rate">평점:<p class="${getRatingColor(
-                                      movieRate
-                                    )}">&nbsp;★${movieRate}</p></div>
-                                </div>
-                                <button onclick="open_box()" class="comment-postbtn" id="open-modal-btn">Comments</button>
-                                <div id="modal">
-                                  <div class="modal-content" id="reviewBox" style="display: none;">
-                                  <span class="close" onclick="closeModal()">&times;</span>
-                                    <h2>🥕리뷰를 작성 해 보세요!🥕</h2>
-                                      <div class="userIpt">
-                                        <input type="text" class="userIpt" id="userIpt" placeholder="UserName">
-                                      </div>
-                                      <div class="psWordIpt">
-                                        <input type="text" class="psWordIpt" id="psWordIpt" placeholder="PW">
-                                      </div>
-                                      <div class="commentIpt">
-                                        <textarea id="commentIpt" class="commentIpt" placeholder="a review comment"></textarea>
-                                      </div>
-                                      <div class="reviewBtns">
-                                        <button onclick="posting()" type="button" class="postBtn">Save</button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                            </div>
+                          </div>
+                          <button onclick="open_box()" class="comment-postbtn" id="open-modal-btn">Comments</button>
+
                         </div>
                     </div>
-                    <div class="details">
-                      <h2>영화 정보</h2>
-                      <p>${movieTitle}</p>
-                      <p>${release_date}</p>
-                      <p>${genres}</p>
-                      <p>${runtime}분</p>
-                      <p>${movieDesc}</p>
-                      <p>제작: ${production_companies}</p>
+                  </div>
+                  <div id="modal">
+                    <div class="modal-content" id="reviewBox" style="display: none;">
+                      <span class="close" onclick="closeModal()">&times;</span>
+                      <h2>🥕리뷰를 작성 해 보세요!🥕</h2>
+                      <div class="userIpt">
+                        <input type="text" class="userIpt" id="userIpt" placeholder="UserName">
+                      </div>
+                      <div class="psWordIpt">
+                        <input type="text" class="psWordIpt" id="psWordIpt" placeholder="PW">
+                      </div>
+                      <div class="commentIpt">
+                        <textarea id="commentIpt" class="commentIpt" placeholder="a review comment"></textarea>
+                      </div>
+                      <div class="reviewBtns">
+                        <button onclick="posting()" type="button" class="postBtn">Save</button>
+                      </div>
                     </div>
-                    <div class="review-list-box">
-                      <h2 class="reviewsTitle">REVIEWS</h2>
-                      <div class="review-list" id="review-list">
-                        <p></p>
+                  </div>
+                  <div class="details">
+                    <h2>영화 정보</h2>
+                    <p>${movieTitle}</p>
+                    <p>${release_date}</p>
+                    <p>${genres}</p>
+                    <p>${runtime}분</p>
+                    <p>${movieDesc}</p>
+                    <p>제작: ${production_companies}</p>
+                  </div>
+                  <div class="review-list-box">
+                    <h2 class="reviewsTitle">REVIEWS</h2>
+                    <div class="review-list" id="review-list">
+                      <p></p>
                     </div>
-                </div>
-                    `;
+                  </div>
+                  `;
     movieDetailsContainer.innerHTML = temp_html;
 
     const reviewList = document.getElementById('review-list');
+
+    // JK 현재 페이지의 movieId와 일치하는 리뷰들만 필터링
+    const filteredReviews = reviews.filter(
+      (review) => review.id === currentMovieId
+    );
 
     // JK 필터링된 리뷰들을 HTML로 추가  + SH Uid 추가
     filteredReviews.forEach((review) => {
