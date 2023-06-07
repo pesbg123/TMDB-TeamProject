@@ -28,7 +28,7 @@ const Upcoming = 'https://api.themoviedb.org/3/movie/upcoming?';
 
 // 상세페이지에서 url로 넘겨준 domain = Popular를 가져옴
 const urlParamsJh = new URLSearchParams(window.location.search);
-const CP = urlParamsJh.get('domain');
+const CD = urlParamsJh.get('domain');
 
 const url = (movieUrl) =>
   showMovieList(movieUrl + 'api_key=' + apiKey, options);
@@ -156,7 +156,9 @@ const getRatingColor = (rate) => {
   }
 };
 
+// 홈페이지 들어가자마자 TopRated 영화 목록 보여주는 함수호출
 url(TopRated);
+
 // 메인페이지 카테고리
 popularTab.addEventListener('click', () => cardsRemove(popular));
 nowPlayingTab.addEventListener('click', () => cardsRemove(NowPlaying));
@@ -164,13 +166,13 @@ topRatedTab.addEventListener('click', () => cardsRemove(TopRated));
 upcomingTab.addEventListener('click', () => cardsRemove(Upcoming));
 
 // 상세페이지 카테고리
-if (CP === 'Popular') {
+if (CD === 'Popular') {
   cardsRemove(popular);
-} else if (CP === 'NowPlaying') {
+} else if (CD === 'NowPlaying') {
   cardsRemove(NowPlaying);
-} else if (CP === 'TopRated') {
+} else if (CD === 'TopRated') {
   cardsRemove(TopRated);
-} else if (CP === 'Upcoming') {
+} else if (CD === 'Upcoming') {
   cardsRemove(Upcoming);
 }
 
