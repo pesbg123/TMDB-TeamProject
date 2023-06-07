@@ -20,6 +20,19 @@ const movieDetailsContainer = document.getElementById("movie-details");
 
 const movieUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=ko`;
 
+// JK 이전에 저장된 리뷰들을 가져옴 (가져와서 붙일때 쓰는 용도)
+let reviews = localStorage.getItem("reviews")
+  ? JSON.parse(localStorage.getItem("reviews")) // 문자열->배열 변환
+  : [];
+
+// JK 현재 페이지의 movieId 값
+const currentMovieId = movieId;
+
+// JK 현재 페이지의 movieId와 일치하는 리뷰들만 필터링
+const filteredReviews = reviews.filter(
+  (review) => review.id === currentMovieId
+);
+
 fetch(movieUrl, options)
   .then((response) => response.json())
   .then((data) => {
@@ -77,7 +90,6 @@ fetch(movieUrl, options)
                       <p>${movieDesc}</p>
                       <p>제작: ${production_companies}</p>
                     </div>
-                    <div
                     <div class="review-list-box">
                       <h2 class="reviewsTitle">REVIEWS</h2>
                       <div class="review-list" id="review-list">
@@ -87,28 +99,23 @@ fetch(movieUrl, options)
                     `;
     movieDetailsContainer.innerHTML = temp_html;
 
-    // JK 이전에 저장된 리뷰들을 가져옴 (가져와서 붙일때 쓰는 용도)
-    let reviews = localStorage.getItem("reviews")
-      ? JSON.parse(localStorage.getItem("reviews"))
-      : [];
+    const reviewList = document.getElementById("review-list");
 
-    const reviewListContainer = document.getElementById("review-list");
-
-    // JK 이전에 저장된 리뷰들을 HTML로 추가
-    reviews.forEach((review) => {
+    // JK 필터링된 리뷰들을 HTML로 추가
+    filteredReviews.forEach((review) => {
       const { user, comment } = review;
 
       // JK 리뷰 HTML 생성
       const reviewHTML = `<div class="review-card">
-                          <div class="review-card-body">
-                            <header class="name-header">${user}</header>
-                            <hr class="bar">
-                            <p>${comment}</p>
-                          </div>
-                        </div>`;
+                      <div class="review-card-body">
+                        <header class="name-header">${user}</header>
+                        <hr class="bar">
+                        <p>${comment}</p>
+                      </div>
+                    </div>`;
 
-      // JK 리뷰를 리뷰 목록 컨테이너에 추가
-      reviewListContainer.insertAdjacentHTML("beforeend", reviewHTML);
+      // JK 리뷰를 리뷰리스트에 추가
+      reviewList.insertAdjacentHTML("beforeend", reviewHTML);
     });
   });
 // JK 리뷰창 열고 닫기
@@ -131,12 +138,15 @@ function open_box() {
 // JK 리뷰 생성 함수
 function posting() {
   const userIpt = document.getElementById("userIpt").value;
+  const psWordIpt = document.getElementById("psWordIpt").value;
   const commentIpt = document.getElementById("commentIpt").value;
 
   // JK 새로운 리뷰 객체 생성
   const newReview = {
     user: userIpt,
+    psWordIpt: psWordIpt,
     comment: commentIpt,
+    id: movieId,
   };
 
   // JK 이전에 저장된 리뷰들을 가져옴 (새 배열 추가하려고 가져오는 용도)
@@ -150,8 +160,8 @@ function posting() {
   // JK 리뷰 배열을 로컬 스토리지에 저장
   localStorage.setItem("reviews", JSON.stringify(reviews));
 
-  // JK 리뷰를 리뷰 목록 컨테이너에 추가
-  const reviewListContainer = document.getElementById("review-list");
+  // JK 리뷰를 리뷰리스트에 추가
+  const reviewList = document.getElementById("review-list");
   const reviewHTML = `<div class="review-card">
                           <div class="review-card-body">
                             <header class="name-header">${userIpt}</header>
@@ -159,11 +169,7 @@ function posting() {
                             <p>${commentIpt}</p>
                           </div>
                         </div>`;
-  reviewListContainer.insertAdjacentHTML("beforeend", reviewHTML);
-
-  // JK 입력 필드 초기화
-  document.getElementById("userIpt").value = "";
-  document.getElementById("commentIpt").value = "";
+  reviewList.insertAdjacentHTML("beforeend", reviewHTML);
 
   // JK comment 창 닫기
   const reviewBox = document.getElementById("reviewBox");
