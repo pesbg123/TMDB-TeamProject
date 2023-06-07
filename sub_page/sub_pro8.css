@@ -147,8 +147,8 @@ nav .Carrot-title {
 
 .movie-box {
   background-color: transparent;
-  margin-top: 20rem;
-  height: 300px;
+  margin-top: 30px;
+  height: 500px;
   width: 80%;
   margin-left: auto;
   margin-right: auto;
@@ -156,16 +156,16 @@ nav .Carrot-title {
 
 .movie-box .movie-boxin {
   width: 100%;
+  height: 500px;
   margin-left: auto;
   margin-right: auto;
   border-radius: 30px;
   display: flex;
-  backdrop-filter: blur(10px);
 }
 
 .movie-box .movie-boxin .movie-img {
-  width: 250px;
-  height: 300px;
+  width: 350px;
+  height: 500px;
   margin-right: 3rem;
   margin-left: auto;
 }
@@ -185,6 +185,7 @@ nav .Carrot-title {
 
 .movie-box .movie-boxin .title-comment .movie-title {
   background-color: transparent;
+  color: white;
   margin-top: 16px;
   border: 1px solid black;
   border-radius: 10px;
@@ -216,7 +217,7 @@ nav .Carrot-title {
 }
 .movie-box .movie-boxin .title-comment .comment-postbtn {
   width: 300px;
-  height: 100px;
+  height: 50px;
   margin-top: 50px;
   margin-right: 50%;
   margin-left: 35%;
@@ -224,7 +225,8 @@ nav .Carrot-title {
   border: 1px solid rgb(3, 3, 3);
   font-size: 30px;
   font-family: "Cherry Bomb One", cursive;
-  background-color: transparent;
+  background-color: tomato;
+  color: white;
 }
 .comment-postbtn:hover {
   box-shadow: 0 200px 0 0 rgba(57, 55, 55, 0.25) inset,
@@ -295,10 +297,10 @@ nav .Carrot-title {
   color: white;
   width: 70%;
   margin: auto;
-  margin-top: 30px;
+  margin-top: 50px;
   margin-bottom: 50px;
   border-radius: 10px;
-  padding: 20px;
+  padding: 50px;
 }
 
 .details h2 {
