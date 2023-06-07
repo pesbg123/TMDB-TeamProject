@@ -192,8 +192,8 @@ nav .Carrot-title {
   font-size: 17px;
   width: 600px;
   height: 120px;
-  margin-left: 100px;
   font-family: "Jua", sans-serif;
+  margin-top: 6rem;
 }
 /* 평점조건마다 색입히기 */
 .movie-rate {
