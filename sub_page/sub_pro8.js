@@ -225,7 +225,7 @@ function renderMainpage() {
   return (window.location.href = `/main_page/main_pro8.html?title=${sub_movieTitle}`);
 }
 
-//SH 삭제 기능
+//SH 삭제 기능 새로고침 추가
 function deleteReview(Uid) {
   const newReview = reviews.filter((element) => element.Uid !== Uid);
   localStorage.setItem("reviews", JSON.stringify(newReview));
