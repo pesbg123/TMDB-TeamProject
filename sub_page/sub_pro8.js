@@ -135,18 +135,19 @@ function open_box() {
       break;
   }
 }
-// JK 리뷰 생성 함수
+// JK 리뷰 생성 함수 + SH UID 생성
 function posting() {
   const userIpt = document.getElementById("userIpt").value;
   const psWordIpt = document.getElementById("psWordIpt").value;
   const commentIpt = document.getElementById("commentIpt").value;
-
-  // JK 새로운 리뷰 객체 생성 SH TEST중입니다.
+  const movieUID = new Date().getTime() + Math.random();
+  // JK 새로운 리뷰 객체 생성 + SH UID 객체 포함
   const newReview = {
     user: userIpt,
     psWordIpt: psWordIpt,
     comment: commentIpt,
     id: movieId,
+    Uid: movieUID,
   };
 
   // JK 이전에 저장된 리뷰들을 가져옴 (새 배열 추가하려고 가져오는 용도)
