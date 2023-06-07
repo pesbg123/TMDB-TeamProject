@@ -150,6 +150,7 @@ nav .Carrot-title {
   margin-top: 20rem;
   height: 300px;
   width: 80%;
+  background-color: transparent;
   margin-left: auto;
   margin-right: auto;
 }
