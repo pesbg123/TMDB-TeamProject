@@ -24,7 +24,7 @@ const movieUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey
 let reviews = localStorage.getItem('reviews')
   ? JSON.parse(localStorage.getItem('reviews')) // 문자열->배열 변환
   : [];
-console.log(Array.isArray(reviews));
+
 // JK 현재 페이지의 movieId 값
 const currentMovieId = movieId;
 
