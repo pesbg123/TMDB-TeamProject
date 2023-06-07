@@ -230,3 +230,25 @@ function deleteReview(Uid) {
   localStorage.setItem("reviews", JSON.stringify(newReview));
   location.reload(true);
 }
+
+// footer에 있는 팀원별 버튼 클릭 이벤트 지정
+const clickJH = document.getElementById("JH");
+clickJH.addEventListener("click", () =>
+  window.open("https://github.com/pesbg123")
+);
+const clickSH = document.getElementById("SH");
+clickSH.addEventListener("click", () =>
+  window.open("https://github.com/jrmun")
+);
+const clickJK = document.getElementById("JK");
+clickJK.addEventListener("click", () =>
+  window.open("https://github.com/jinkyung127")
+);
+const clickHW = document.getElementById("HW");
+clickHW.addEventListener("click", () =>
+  window.open("https://github.com/hyunwoo87")
+);
+const clickHK = document.getElementById("HK");
+clickHK.addEventListener("click", () =>
+  window.open("https://github.com/kwakhyunkyu")
+);
