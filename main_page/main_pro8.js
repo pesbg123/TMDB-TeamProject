@@ -174,31 +174,10 @@ if (CP === 'Popular') {
   cardsRemove(Upcoming);
 }
 
-//sub_movieTitle이 서브페이지에서 검색했을 때 변수로 오는 값입니다.
-//값이 비어있지 않다면 메인페이지에 서브페이지에서 검색한 값을 보여줍니다.
 if (sub_movieTitle !== null) {
   movieCardBox.textContent = '';
   searchMovie(sub_movieTitle);
 }
+//sub_movieTitle이 서브페이지에서 검색했을 때 변수로 오는 값입니다.
 
-// footer에 있는 팀원별 버튼 클릭 이벤트 지정
-const clickJH = document.getElementById('JH');
-clickJH.addEventListener('click', () =>
-  window.open('https://github.com/pesbg123')
-);
-const clickSH = document.getElementById('SH');
-clickSH.addEventListener('click', () =>
-  window.open('https://github.com/jrmun')
-);
-const clickJK = document.getElementById('JK');
-clickJK.addEventListener('click', () =>
-  window.open('https://github.com/jinkyung127')
-);
-const clickHW = document.getElementById('HW');
-clickHW.addEventListener('click', () =>
-  window.open('https://github.com/hyunwoo87')
-);
-const clickHK = document.getElementById('HK');
-clickHK.addEventListener('click', () =>
-  window.open('https://github.com/kwakhyunkyu')
-);
+//값이 비어있지 않다면 메인페이지에 서브페이지에서 검색한 값을 보여줍니다.
