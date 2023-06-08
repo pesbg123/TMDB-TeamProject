@@ -211,13 +211,13 @@ sub_searchBox.addEventListener("keypress", (event) => {
   }
 });
 
-//메인 페이지랑 똑같습니다.
+// 메인 페이지랑 똑같습니다.
 function renderMainpage() {
   const sub_movieTitle = sub_searchBox.value;
   return (window.location.href = `/main_page/main_pro8.html?title=${sub_movieTitle}`);
 }
 
-//SH 삭제 기능을 위한 모달창
+// SH 삭제 기능을 위한 모달창
 function deleteReview(Uid, passWord) {
   // JK 모달창 열기
   const modal = document.getElementById("modal");
