@@ -37,7 +37,7 @@ function displayWeather(weatherData) {
   // HK 날씨 정보를 표시할 HTML 요소를 선택.
   const weatherContainer = document.getElementById("weather-container");
 
-  // 날씨 정보를 표시할 새로운 HTML 요소를 생성합니다.
+  // HK 날씨 정보를 표시할 새로운 HTML 요소를 생성합니다.
   const weatherInfo = document.createElement('div');
   weatherInfo.innerHTML = `현재 온도: ${temperature}°<br>
     최고기온: ${tempMax}°, 최저기온: ${tempMin}°`;
