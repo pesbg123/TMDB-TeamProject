@@ -108,7 +108,7 @@ fetch(movieUrl, options)
 
     // JK 필터링된 리뷰들을 HTML로 추가  + SH Uid 추가
     filteredReviews.forEach((review) => {
-      const { user, comment, Uid } = review;
+      const { user, comment, Uid, psWordIpt } = review;
 
       // JK 리뷰 HTML 생성  + SH 버튼 추가
       const reviewHTML = `<div class="review-card">
@@ -116,8 +116,7 @@ fetch(movieUrl, options)
                         <header class="name-header">${user}</header>
                         <hr class="bar">
                         <p>${comment}</p>
-                        <button class="button" onclick='deleteReview(${Uid})'>삭제</button>
-                        <button class="button" onclick='updateReview(${Uid})'>수정</button>
+                        <button class="button" onclick='deleteReview(${Uid},${psWordIpt})'>삭제</button>
                       </div>
                     </div>`;
 
@@ -173,8 +172,7 @@ function posting() {
                             <header class="name-header">${userIpt}</header>
                             <hr class="bar">
                             <p>${commentIpt}</p>
-                            <button class="button" onclick='deleteReview(${movieUID})'>삭제</button>
-                            <button class="button" onclick='updateReview(${movieUID})'>수정</button>
+                            <button class="button" onclick='deleteReview(${movieUID},${psWordIpt})'>삭제</button>
                           </div>
                         </div>`;
   reviewList.insertAdjacentHTML("beforeend", reviewHTML);
@@ -231,52 +229,37 @@ function renderMainpage() {
   return (window.location.href = `/main_page/main_pro8.html?title=${sub_movieTitle}`);
 }
 
-//SH 삭제 기능 새로고침 추가
-function deleteReview(Uid) {
-  const newReview = reviews.filter((element) => element.Uid !== Uid);
-  localStorage.setItem("reviews", JSON.stringify(newReview));
-  location.reload(true);
+//SH 삭제 기능을 위한 모달창
+function deleteReview(Uid, passWord) {
+  // 모달창 열기
+  const modal = document.getElementById("modal");
+  const reviewBox = document.getElementById("reviewBox");
+  modal.style.display = "block";
+  reviewBox.style.display = "block";
+  // 비밀번호 입력 창 모달로 변경
+  const deleteModalContent = document.getElementById("reviewBox");
+  deleteModalContent.innerHTML = `<div class="modal-reivew-content" id="reviewBox">
+                                      <span class="close" onclick="closeModal()">&times;</span>
+                                      <h2>비밀번호를 입력하세요 🥕</h2>
+                                      <div class="psWordIpt">
+                                        <input type="password" class="psWordIpt" id="passwordInput" placeholder="password">
+                                      </div>
+                                      <div class="reviewBtns">
+                                        <button type="button" class="PwConfirmBtn" onclick="confirmPassword(${Uid},${passWord})">삭제</button>
+                                      </div>
+                                    </div>`;
 }
+// SH 삭제 기능 value값이 string이길래 passWord도 string으로 형변환함
+function confirmPassword(Uid, psWord) {
+  const currentPassWord = document.getElementById("passwordInput").value;
+  console.log(currentPassWord);
+  console.log(String(psWord));
 
-// 팀원 깃헙 프로필로 넘겨주는 함수
-function openGitHubProfile(url) {
-  window.open(url);
-}
-
-// 배열안에 array로 각각 깃헙 주소 할당
-const teamMembers = [
-  { id: "JH", url: "https://github.com/pesbg123" },
-  { id: "SH", url: "https://github.com/jrmun" },
-  { id: "JK", url: "https://github.com/jinkyung127" },
-  { id: "HW", url: "https://github.com/hyunwoo87" },
-  { id: "HK", url: "https://github.com/kwakhyunkyu" },
-];
-
-// footer에 있는 팀원별 버튼 클릭 이벤트 지정
-teamMembers.forEach((member) => {
-  const clickMember = document.getElementById(member.id);
-  clickMember.addEventListener("click", () => openGitHubProfile(member.url));
-});
-
-function updateReview() {
-  let temp_html = `<div id="modal">
-  <div class="modal-content" id="reviewBox" style="display: none;">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <h2>🥕리뷰를 작성 해 보세요!🥕</h2>
-    <div class="userIpt">
-      <input type="text" class="userIpt" id="userIpt" placeholder="UserName">
-    </div>
-    <div class="psWordIpt">
-      <input type="text" class="psWordIpt" id="psWordIpt" placeholder="PW">
-    </div>
-    <div class="commentIpt">
-      <textarea id="commentIpt" class="commentIpt" placeholder="a review comment"></textarea>
-    </div>
-    <div class="reviewBtns">
-      <button onclick="posting()" type="button" class="postBtn">Save</button>
-    </div>
-  </div>
-</div>`;
-  movieupdateContainer.innerHTML = temp_html;
-  open_box();
+  if (String(psWord) === currentPassWord) {
+    const deleteReview = reviews.filter((element) => element.Uid !== Uid);
+    localStorage.setItem("reviews", JSON.stringify(deleteReview));
+    location.reload(true);
+  } else {
+    alert("비밀번호가 올바르지 않습니다.");
+  }
 }
