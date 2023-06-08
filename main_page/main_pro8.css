@@ -66,6 +66,7 @@ body {
 .solo-card h2 {
   font-family: 'Jua', sans-serif;
   font-size: 30px;
+  word-wrap: break-word;
 }
 
 .solo-card p {
