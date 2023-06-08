@@ -236,10 +236,12 @@ function deleteReview(Uid) {
   location.reload(true);
 }
 
+// 팀원 깃헙 프로필로 넘겨주는 함수
 function openGitHubProfile(url) {
   window.open(url);
 }
 
+// 배열안에 array로 각각 깃헙 주소 할당
 const teamMembers = [
   { id: 'JH', url: 'https://github.com/pesbg123' },
   { id: 'SH', url: 'https://github.com/jrmun' },
@@ -248,6 +250,7 @@ const teamMembers = [
   { id: 'HK', url: 'https://github.com/kwakhyunkyu' },
 ];
 
+// footer에 있는 팀원별 버튼 클릭 이벤트 지정
 teamMembers.forEach((member) => {
   const clickMember = document.getElementById(member.id);
   clickMember.addEventListener('click', () => openGitHubProfile(member.url));
