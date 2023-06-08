@@ -203,22 +203,6 @@ const main = () => {
   window.location.href = '/main_page/main_pro8.html';
 };
 
-// 상세페이지에서 카테고리들로 넘어가는 함수
-const goToDomain = (domain) =>
-  (window.location.href = `/main_page/main_pro8.html?domain=${domain}`);
-
-const clickPopular = document.getElementById('popular-category');
-clickPopular.addEventListener('click', () => goToDomain('Popular'));
-
-const clickNowPlaying = document.getElementById('nowplaying-category');
-clickNowPlaying.addEventListener('click', () => goToDomain('NowPlaying'));
-
-const clickTopRated = document.getElementById('toprate-category');
-clickTopRated.addEventListener('click', () => goToDomain('TopRated'));
-
-const clickUpcoming = document.getElementById('upcoming-category');
-clickUpcoming.addEventListener('click', () => goToDomain('Upcoming'));
-
 sub_searchBtn.addEventListener('click', renderMainpage);
 sub_searchBox.addEventListener('keypress', (event) => {
   if (event.key === 'Enter') {
