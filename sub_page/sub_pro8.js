@@ -17,16 +17,13 @@ const options = {
 const apiKey = 'e9bb92f648d4191155d17c8e43f25e68&language=ko';
 
 const movieDetailsContainer = document.getElementById('movie-details');
-
+const movieupdateContainer = document.getElementById('movie-update-modal');
 const movieUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=ko`;
 
 // JK 이전에 저장된 리뷰들을 가져옴 (가져와서 붙일때 쓰는 용도)
 let reviews = localStorage.getItem('reviews')
   ? JSON.parse(localStorage.getItem('reviews')) // 문자열->배열 변환
   : [];
-
-// JK 현재 페이지의 movieId 값
-const currentMovieId = movieId;
 
 fetch(movieUrl, options)
   .then((response) => response.json())
@@ -102,13 +99,11 @@ fetch(movieUrl, options)
     const reviewList = document.getElementById('review-list');
 
     // JK 현재 페이지의 movieId와 일치하는 리뷰들만 필터링
-    const filteredReviews = reviews.filter(
-      (review) => review.id === currentMovieId
-    );
+    const filteredReviews = reviews.filter((review) => review.id === movieId);
 
     // JK 필터링된 리뷰들을 HTML로 추가  + SH Uid 추가
     filteredReviews.forEach((review) => {
-      const { user, comment, Uid } = review;
+      const { user, comment, Uid, psWordIpt } = review;
 
       // JK 리뷰 HTML 생성  + SH 버튼 추가
       const reviewHTML = `<div class="review-card">
@@ -116,7 +111,7 @@ fetch(movieUrl, options)
                         <header class="name-header">${user}</header>
                         <hr class="bar">
                         <p>${comment}</p>
-                        <button class="button" onclick='deleteReview(${Uid})'>삭제</button>
+                        <button class="DLbutton" onclick='deleteReview(${Uid},${psWordIpt})'>삭제</button>
                       </div>
                     </div>`;
 
@@ -126,14 +121,14 @@ fetch(movieUrl, options)
   });
 // JK 리뷰창 열고 닫기
 function open_box() {
-  // 모달창 열기 위한 버튼
+  // JK 모달창 열기 위한 버튼
   const modal = document.getElementById('modal');
   const reviewBox = document.getElementById('reviewBox');
   modal.style.display = 'block';
   reviewBox.style.display = 'block';
 }
 
-// 모달창 닫기
+// JK 모달창 닫기
 function closeModal() {
   const modal = document.getElementById('modal');
   modal.style.display = 'none';
@@ -153,7 +148,6 @@ function posting() {
     id: movieId,
     Uid: movieUID,
   };
-
   // JK 이전에 저장된 리뷰들을 가져옴 (새 배열 추가하려고 가져오는 용도)
   let reviews = localStorage.getItem('reviews')
     ? JSON.parse(localStorage.getItem('reviews'))
@@ -162,26 +156,31 @@ function posting() {
   // JK 새로운 리뷰를 리뷰 배열에 추가
   reviews.push(newReview);
 
-  // JK 리뷰 배열을 로컬 스토리지에 저장
-  localStorage.setItem('reviews', JSON.stringify(reviews));
+  // SH password가 문자열이면 알림창 뜨게 수정
+  if (isNaN(psWordIpt) !== true) {
+    // JK 리뷰 배열을 로컬 스토리지에 저장
+    localStorage.setItem('reviews', JSON.stringify(reviews));
 
-  // JK 리뷰를 리뷰리스트에 추가 + SH 버튼 추가
-  const reviewList = document.getElementById('review-list');
-  const reviewHTML = `<div class="review-card">
+    // JK 리뷰를 리뷰리스트에 추가 + SH 버튼 추가
+    const reviewList = document.getElementById('review-list');
+    const reviewHTML = `<div class="review-card">
                           <div class="review-card-body">
                             <header class="name-header">${userIpt}</header>
                             <hr class="bar">
                             <p>${commentIpt}</p>
-                            <button class="button" onclick='deleteReview(${movieUID})'>삭제</button>
+                            <button class="DLbutton" onclick='deleteReview(${movieUID},${psWordIpt})'>삭제</button>
                           </div>
                         </div>`;
-  reviewList.insertAdjacentHTML('beforeend', reviewHTML);
+    reviewList.insertAdjacentHTML('beforeend', reviewHTML);
 
-  // JK comment 창 닫기 + SH 리뷰 작성 시 새로고침(삭제 기능에 필요)
-  const reviewBox = document.getElementById('reviewBox');
-  reviewBox.style.display = 'none';
-  localStorage.setItem('reviewBoxDisplay', 'hidden');
-  location.reload(true);
+    // JK comment 창 닫기 + SH 리뷰 작성 시 새로고침(삭제 기능에 필요)
+    const reviewBox = document.getElementById('reviewBox');
+    reviewBox.style.display = 'none';
+    localStorage.setItem('reviewBoxDisplay', 'hidden');
+    location.reload(true);
+  } else {
+    alert('비밀번호는 숫자를 입력해주세요.');
+  }
 }
 
 // 평점 색 구분
@@ -199,22 +198,6 @@ const main = () => {
   window.location.href = '/main_page/main_pro8.html';
 };
 
-// 상세페이지에서 카테고리들로 넘어가는 함수
-const goToDomain = (domain) =>
-  (window.location.href = `/main_page/main_pro8.html?domain=${domain}`);
-
-const clickPopular = document.getElementById('popular-category');
-clickPopular.addEventListener('click', () => goToDomain('Popular'));
-
-const clickNowPlaying = document.getElementById('nowplaying-category');
-clickNowPlaying.addEventListener('click', () => goToDomain('NowPlaying'));
-
-const clickTopRated = document.getElementById('toprate-category');
-clickTopRated.addEventListener('click', () => goToDomain('TopRated'));
-
-const clickUpcoming = document.getElementById('upcoming-category');
-clickUpcoming.addEventListener('click', () => goToDomain('Upcoming'));
-
 sub_searchBtn.addEventListener('click', renderMainpage);
 sub_searchBox.addEventListener('keypress', (event) => {
   if (event.key === 'Enter') {
@@ -223,35 +206,41 @@ sub_searchBox.addEventListener('keypress', (event) => {
   }
 });
 
-//메인 페이지랑 똑같습니다.
+// 메인 페이지랑 똑같습니다.
 function renderMainpage() {
   const sub_movieTitle = sub_searchBox.value;
   return (window.location.href = `/main_page/main_pro8.html?title=${sub_movieTitle}`);
 }
 
-//SH 삭제 기능 새로고침 추가
-function deleteReview(Uid) {
-  const newReview = reviews.filter((element) => element.Uid !== Uid);
-  localStorage.setItem('reviews', JSON.stringify(newReview));
-  location.reload(true);
+// SH 삭제 기능을 위한 모달창
+function deleteReview(Uid, passWord) {
+  // JK 모달창 열기
+  const modal = document.getElementById('modal');
+  const reviewBox = document.getElementById('reviewBox');
+  modal.style.display = 'block';
+  reviewBox.style.display = 'block';
+  // JK 비밀번호 입력 창 모달로 변경
+  const deleteModalContent = document.getElementById('reviewBox');
+  deleteModalContent.innerHTML = `<div class="modal-reivew-content" id="reviewBox">
+                                      <span class="close" onclick="closeModal()">&times;</span>
+                                      <h2>비밀번호를 입력하세요 🥕</h2>
+                                      <div class="psWordIpt">
+                                        <input type="password" class="psWordIpt" id="passwordInput" placeholder="password">
+                                      </div>
+                                      <div class="reviewBtns">
+                                        <button type="button" class="PwConfirmBtn" onclick="confirmPassword(${Uid},${passWord})">삭제</button>
+                                      </div>
+                                    </div>`;
 }
+// SH 삭제 기능 value값이 string이길래 passWord도 string으로 형변환함
+function confirmPassword(Uid, psWord) {
+  const currentPassWord = document.getElementById('passwordInput').value;
 
-// 팀원 깃헙 프로필로 넘겨주는 함수
-function openGitHubProfile(url) {
-  window.open(url);
+  if (String(psWord) === currentPassWord) {
+    const deleteReview = reviews.filter((element) => element.Uid !== Uid);
+    localStorage.setItem('reviews', JSON.stringify(deleteReview));
+    location.reload(true);
+  } else {
+    alert('비밀번호가 올바르지 않습니다.');
+  }
 }
-
-// 배열안에 array로 각각 깃헙 주소 할당
-const teamMembers = [
-  { id: 'JH', url: 'https://github.com/pesbg123' },
-  { id: 'SH', url: 'https://github.com/jrmun' },
-  { id: 'JK', url: 'https://github.com/jinkyung127' },
-  { id: 'HW', url: 'https://github.com/hyunwoo87' },
-  { id: 'HK', url: 'https://github.com/kwakhyunkyu' },
-];
-
-// footer에 있는 팀원별 버튼 클릭 이벤트 지정
-teamMembers.forEach((member) => {
-  const clickMember = document.getElementById(member.id);
-  clickMember.addEventListener('click', () => openGitHubProfile(member.url));
-});
