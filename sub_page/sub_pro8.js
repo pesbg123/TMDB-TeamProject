@@ -153,7 +153,6 @@ function posting() {
     id: movieId,
     Uid: movieUID,
   };
-
   // JK 이전에 저장된 리뷰들을 가져옴 (새 배열 추가하려고 가져오는 용도)
   let reviews = localStorage.getItem("reviews")
     ? JSON.parse(localStorage.getItem("reviews"))
@@ -162,12 +161,14 @@ function posting() {
   // JK 새로운 리뷰를 리뷰 배열에 추가
   reviews.push(newReview);
 
-  // JK 리뷰 배열을 로컬 스토리지에 저장
-  localStorage.setItem("reviews", JSON.stringify(reviews));
+  // SH password가 문자열이면 알림창 뜨게 수정
+  if (isNaN(psWordIpt) !== true) {
+    // JK 리뷰 배열을 로컬 스토리지에 저장
+    localStorage.setItem("reviews", JSON.stringify(reviews));
 
-  // JK 리뷰를 리뷰리스트에 추가 + SH 버튼 추가
-  const reviewList = document.getElementById("review-list");
-  const reviewHTML = `<div class="review-card">
+    // JK 리뷰를 리뷰리스트에 추가 + SH 버튼 추가
+    const reviewList = document.getElementById("review-list");
+    const reviewHTML = `<div class="review-card">
                           <div class="review-card-body">
                             <header class="name-header">${userIpt}</header>
                             <hr class="bar">
@@ -175,13 +176,16 @@ function posting() {
                             <button class="button" onclick='deleteReview(${movieUID},${psWordIpt})'>삭제</button>
                           </div>
                         </div>`;
-  reviewList.insertAdjacentHTML("beforeend", reviewHTML);
+    reviewList.insertAdjacentHTML("beforeend", reviewHTML);
 
-  // JK comment 창 닫기 + SH 리뷰 작성 시 새로고침(삭제 기능에 필요)
-  const reviewBox = document.getElementById("reviewBox");
-  reviewBox.style.display = "none";
-  localStorage.setItem("reviewBoxDisplay", "hidden");
-  location.reload(true);
+    // JK comment 창 닫기 + SH 리뷰 작성 시 새로고침(삭제 기능에 필요)
+    const reviewBox = document.getElementById("reviewBox");
+    reviewBox.style.display = "none";
+    localStorage.setItem("reviewBoxDisplay", "hidden");
+    location.reload(true);
+  } else {
+    alert("비밀번호는 숫자를 입력해주세요.");
+  }
 }
 
 // 평점 색 구분
@@ -253,6 +257,7 @@ function deleteReview(Uid, passWord) {
 function confirmPassword(Uid, psWord) {
   const currentPassWord = document.getElementById("passwordInput").value;
   console.log(currentPassWord);
+  console.log(isNaN(currentPassWord));
   console.log(String(psWord));
 
   if (String(psWord) === currentPassWord) {
