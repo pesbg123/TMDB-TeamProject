@@ -6,7 +6,7 @@ const options = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlOWJiOTJmNjQ4ZDQxOTExNTVkMTdjOGU0M2YyNWU2OCIsInN1YiI6IjY0NzIxZmM1ZGQ3MzFiMDBjMGJhYWU5MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Y3E-hG7rguBwXeMYwJDAuXRxZp8nBSidYbJb6AFhSf0",
   },
 };
-// 이수현 상세페이지 검색 url
+// SH 상세페이지 검색 url
 const urlParamsSH = new URLSearchParams(window.location.search);
 const sub_movieTitle = urlParamsSH.get("title");
 
