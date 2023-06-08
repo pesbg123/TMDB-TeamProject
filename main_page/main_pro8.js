@@ -183,24 +183,21 @@ if (sub_movieTitle !== null) {
   searchMovie(sub_movieTitle);
 }
 
+// 팀원 깃헙 프로필로 넘겨주는 함수
+function openGitHubProfile(url) {
+  window.open(url);
+}
+
 // footer에 있는 팀원별 버튼 클릭 이벤트 지정
-const clickJH = document.getElementById('JH');
-clickJH.addEventListener('click', () =>
-  window.open('https://github.com/pesbg123')
-);
-const clickSH = document.getElementById('SH');
-clickSH.addEventListener('click', () =>
-  window.open('https://github.com/jrmun')
-);
-const clickJK = document.getElementById('JK');
-clickJK.addEventListener('click', () =>
-  window.open('https://github.com/jinkyung127')
-);
-const clickHW = document.getElementById('HW');
-clickHW.addEventListener('click', () =>
-  window.open('https://github.com/hyunwoo87')
-);
-const clickHK = document.getElementById('HK');
-clickHK.addEventListener('click', () =>
-  window.open('https://github.com/kwakhyunkyu')
-);
+const teamMembers = [
+  { id: 'JH', url: 'https://github.com/pesbg123' },
+  { id: 'SH', url: 'https://github.com/jrmun' },
+  { id: 'JK', url: 'https://github.com/jinkyung127' },
+  { id: 'HW', url: 'https://github.com/hyunwoo87' },
+  { id: 'HK', url: 'https://github.com/kwakhyunkyu' },
+];
+
+teamMembers.forEach((member) => {
+  const clickMember = document.getElementById(member.id);
+  clickMember.addEventListener('click', () => openGitHubProfile(member.url));
+});
