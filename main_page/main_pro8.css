@@ -53,7 +53,7 @@ body {
 }
 
 .card-body {
-  height: 200px;
+  height: 250px;
   padding: 0.5rem 1rem;
 }
 
@@ -61,6 +61,16 @@ body {
 .solo-card {
   border-radius: 17px;
   height: 100%;
+}
+
+.solo-card h2 {
+  font-family: 'Jua', sans-serif;
+  font-size: 30px;
+}
+
+.solo-card p {
+  font-family: 'Jua', sans-serif;
+  font-size: 20px;
 }
 
 /* 평점조건마다 색입히기 */
