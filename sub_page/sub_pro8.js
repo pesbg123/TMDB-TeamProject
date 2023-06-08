@@ -159,14 +159,18 @@ function posting() {
   // JK 새로운 리뷰를 리뷰 배열에 추가
   reviews.push(newReview);
 
-  // SH password가 문자열이면 알림창 뜨게 수정
-  if (isNaN(psWordIpt) !== true) {
-    // JK 리뷰 배열을 로컬 스토리지에 저장
-    localStorage.setItem("reviews", JSON.stringify(reviews));
+  // SH password가 숫자열이 아니고, 공백이면 알림창 뜨게 수정
+  if (isNaN(psWordIpt) !== true && psWordIpt !== "") {
+    // SH userIpt가 공백일 경우 알림창이 뜨게 수정
+    if (userIpt !== "") {
+      // SH comment가 공백일 경우 알림창이 뜨게 수정
+      if (commentIpt !== "") {
+        // JK 리뷰 배열을 로컬 스토리지에 저장
+        localStorage.setItem("reviews", JSON.stringify(reviews));
 
-    // JK 리뷰를 리뷰리스트에 추가 + SH 버튼 추가
-    const reviewList = document.getElementById("review-list");
-    const reviewHTML = `<div class="review-card">
+        // JK 리뷰를 리뷰리스트에 추가 + SH 버튼 추가
+        const reviewList = document.getElementById("review-list");
+        const reviewHTML = `<div class="review-card">
                           <div class="review-card-body">
                             <header class="name-header">${userIpt}</header>
                             <hr class="bar">
@@ -174,15 +178,21 @@ function posting() {
                             <button class="DLbutton" onclick='deleteReview(${movieUID},${psWordIpt})'>삭제</button>
                           </div>
                         </div>`;
-    reviewList.insertAdjacentHTML("beforeend", reviewHTML);
+        reviewList.insertAdjacentHTML("beforeend", reviewHTML);
 
-    // JK comment 창 닫기 + SH 리뷰 작성 시 새로고침(삭제 기능에 필요)
-    const reviewBox = document.getElementById("reviewBox");
-    reviewBox.style.display = "none";
-    localStorage.setItem("reviewBoxDisplay", "hidden");
-    location.reload(true);
+        // JK comment 창 닫기 + SH 리뷰 작성 시 새로고침(삭제 기능에 필요)
+        const reviewBox = document.getElementById("reviewBox");
+        reviewBox.style.display = "none";
+        localStorage.setItem("reviewBoxDisplay", "hidden");
+        location.reload(true);
+      } else {
+        alert("코멘트을 작성해주세요.");
+      }
+    } else {
+      alert("닉네임을 작성해주세요.");
+    }
   } else {
-    alert("비밀번호는 숫자를 입력해주세요.");
+    alert("비밀번호가 올바르지 않습니다.");
   }
 }
 
