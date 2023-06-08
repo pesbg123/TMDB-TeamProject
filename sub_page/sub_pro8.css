@@ -145,6 +145,7 @@ nav .Carrot-title {
     0 200px 0 0 rgba(57, 55, 55, 0.25) inset;
 }
 
+/* 영화 이미지, 제목, 평점 */
 .movie-box {
   background-color: transparent;
   max-width: 100%;
@@ -199,6 +200,8 @@ nav .Carrot-title {
 .movie-rate p.red {
   color: red;
 }
+
+/* 리뷰 작성창 열기 버튼 + 호버 효과 */
 .movie-box .title-comment .comment-postbtn {
   width: 200px;
   height: 50px;
@@ -215,6 +218,7 @@ nav .Carrot-title {
     0 200px 0 0 rgba(57, 55, 55, 0.25) inset;
 }
 
+/* 리뷰작성창 내부 + 사용자명, 비밀번호, 리뷰내용 인풋 */
 .reviewBox {
   background-color: gray;
   width: 300px;
@@ -255,6 +259,7 @@ nav .Carrot-title {
   font-size: 30px;
 }
 
+/* 리뷰 등록 버튼 + 호버 효과 */
 .postBtn {
   font-family: "Cherry Bomb One", cursive;
   width: 150px;
@@ -268,12 +273,12 @@ nav .Carrot-title {
   color: white;
   font-size: 25px;
 }
-
 .postBtn:hover {
   box-shadow: 0 80px 0 0 rgba(255, 255, 255, 0.25) inset,
     0 -80px 0 0 rgba(255, 255, 255, 0.25) inset;
 }
 
+/* 상세정보 div */
 .details {
   background-color: rgb(63, 63, 63);
   color: white;
@@ -296,6 +301,7 @@ nav .Carrot-title {
   font-size: 25px;
 }
 
+/* 리뷰 목록을 보여주는 div */
 .review-list-box {
   background-color: rgb(61, 61, 61);
   width: 70%;
@@ -312,6 +318,7 @@ nav .Carrot-title {
   font-size: 30px;
 }
 
+/* 낱개의 리뷰 카드 */
 .review-card {
   font-family: "Jua", sans-serif;
   background-color: rgb(78, 78, 78);
@@ -324,6 +331,7 @@ nav .Carrot-title {
   margin: 20px 20px 20px 20px;
 }
 
+/* 리뷰 작성자명 */
 .review-card .review-card-body .name-header {
   font-size: 28px;
 }
@@ -336,6 +344,7 @@ nav .Carrot-title {
   height: 100%;
 }
 
+/* 모달창 기본값 + 주변 어둡게 */
 #modal {
   position: fixed;
   z-index: 1;
@@ -348,6 +357,7 @@ nav .Carrot-title {
   display: none;
 }
 
+/* 모달창 내부 */
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto;
@@ -358,6 +368,7 @@ nav .Carrot-title {
   height: 600px;
 }
 
+/* 모달창 닫기 X 버튼 */
 .close {
   color: #aaa;
   float: right;
@@ -365,9 +376,44 @@ nav .Carrot-title {
   font-weight: bold;
 }
 
+/* 모달창 닫기 버튼 호버 효과 */
 .close:hover,
 .close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* 리뷰 삭제 버튼 */
+.DLbutton {
+  width: 80px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgb(3, 3, 3);
+  font-size: 15px;
+  background-color: white;
+  color: black;
+}
+
+/* 리뷰 삭제 버튼 효과 */
+.DLbutton:hover {
+  box-shadow: 0 200px 0 0 rgba(57, 55, 55, 0.25) inset,
+    0 200px 0 0 rgba(57, 55, 55, 0.25) inset;
+}
+
+/* 비밀번호 입력 후 삭제 버튼 */
+.PwConfirmBtn {
+  width: 80px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgb(3, 3, 3);
+  font-size: 15px;
+  background-color: white;
+  color: black;
+}
+
+/* 비밀번호 입력 후 삭제 버튼 호버 효과 */
+.PwConfirmBtn:hover {
+  box-shadow: 0 200px 0 0 rgba(57, 55, 55, 0.25) inset,
+    0 200px 0 0 rgba(57, 55, 55, 0.25) inset;
 }
