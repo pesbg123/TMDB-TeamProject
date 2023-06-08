@@ -116,7 +116,7 @@ fetch(movieUrl, options)
                         <header class="name-header">${user}</header>
                         <hr class="bar">
                         <p>${comment}</p>
-                        <button class="button" onclick='deleteReview(${Uid},${psWordIpt})'>삭제</button>
+                        <button class="DLbutton" onclick='deleteReview(${Uid},${psWordIpt})'>삭제</button>
                       </div>
                     </div>`;
 
@@ -126,14 +126,14 @@ fetch(movieUrl, options)
   });
 // JK 리뷰창 열고 닫기
 function open_box() {
-  // 모달창 열기 위한 버튼
+  // JK 모달창 열기 위한 버튼
   const modal = document.getElementById("modal");
   const reviewBox = document.getElementById("reviewBox");
   modal.style.display = "block";
   reviewBox.style.display = "block";
 }
 
-// 모달창 닫기
+// JK 모달창 닫기
 function closeModal() {
   const modal = document.getElementById("modal");
   modal.style.display = "none";
@@ -173,7 +173,7 @@ function posting() {
                             <header class="name-header">${userIpt}</header>
                             <hr class="bar">
                             <p>${commentIpt}</p>
-                            <button class="button" onclick='deleteReview(${movieUID},${psWordIpt})'>삭제</button>
+                            <button class="DLbutton" onclick='deleteReview(${movieUID},${psWordIpt})'>삭제</button>
                           </div>
                         </div>`;
     reviewList.insertAdjacentHTML("beforeend", reviewHTML);
@@ -219,12 +219,12 @@ function renderMainpage() {
 
 // SH 삭제 기능을 위한 모달창
 function deleteReview(Uid, passWord) {
-  // 모달창 열기
+  // JK 모달창 열기
   const modal = document.getElementById("modal");
   const reviewBox = document.getElementById("reviewBox");
   modal.style.display = "block";
   reviewBox.style.display = "block";
-  // 비밀번호 입력 창 모달로 변경
+  // JK 비밀번호 입력 창 모달로 변경
   const deleteModalContent = document.getElementById("reviewBox");
   deleteModalContent.innerHTML = `<div class="modal-reivew-content" id="reviewBox">
                                       <span class="close" onclick="closeModal()">&times;</span>
