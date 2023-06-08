@@ -324,7 +324,7 @@ nav .Carrot-title {
   background-color: rgb(78, 78, 78);
   color: white;
   width: 90%;
-  height: 200px;
+  height: auto;
   border: 1px solid rgb(71, 71, 71);
   border-radius: 10px;
   padding: 20px;
@@ -338,6 +338,7 @@ nav .Carrot-title {
 
 .review-card .review-card-body p {
   font-size: 25px;
+  word-wrap: break-word; /* 댓글 길어지면 영어 뚫리는 현상 */
 }
 
 .movie-details {
