@@ -17,7 +17,7 @@ const options = {
 const apiKey = "e9bb92f648d4191155d17c8e43f25e68&language=ko";
 
 const movieDetailsContainer = document.getElementById("movie-details");
-
+const movieupdateContainer = document.getElementById("movie-update-modal");
 const movieUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=ko`;
 
 // JK 이전에 저장된 리뷰들을 가져옴 (가져와서 붙일때 쓰는 용도)
@@ -108,7 +108,7 @@ fetch(movieUrl, options)
 
     // JK 필터링된 리뷰들을 HTML로 추가  + SH Uid 추가
     filteredReviews.forEach((review) => {
-      const { user, comment, Uid } = review;
+      const { user, comment, Uid, psWordIpt } = review;
 
       // JK 리뷰 HTML 생성  + SH 버튼 추가
       const reviewHTML = `<div class="review-card">
@@ -116,7 +116,7 @@ fetch(movieUrl, options)
                         <header class="name-header">${user}</header>
                         <hr class="bar">
                         <p>${comment}</p>
-                        <button class="button" onclick='deleteReview(${Uid})'>삭제</button>
+                        <button class="button" onclick='deleteReview(${Uid},${psWordIpt})'>삭제</button>
                       </div>
                     </div>`;
 
@@ -172,7 +172,7 @@ function posting() {
                             <header class="name-header">${userIpt}</header>
                             <hr class="bar">
                             <p>${commentIpt}</p>
-                            <button class="button" onclick='deleteReview(${movieUID})'>삭제</button>
+                            <button class="button" onclick='deleteReview(${movieUID},${psWordIpt})'>삭제</button>
                           </div>
                         </div>`;
   reviewList.insertAdjacentHTML("beforeend", reviewHTML);
@@ -229,17 +229,13 @@ function renderMainpage() {
   return (window.location.href = `/main_page/main_pro8.html?title=${sub_movieTitle}`);
 }
 
-//SH 삭제 기능 새로고침 추가
-function deleteReview(Uid) {
-  // const newReview = reviews.filter((element) => element.Uid !== Uid);
-  // localStorage.setItem('reviews', JSON.stringify(newReview));
-
+//SH 삭제 기능을 위한 모달창
+function deleteReview(Uid, passWord) {
   // 모달창 열기
   const modal = document.getElementById("modal");
   const reviewBox = document.getElementById("reviewBox");
   modal.style.display = "block";
   reviewBox.style.display = "block";
-
   // 비밀번호 입력 창 모달로 변경
   const deleteModalContent = document.getElementById("reviewBox");
   deleteModalContent.innerHTML = `<div class="modal-reivew-content" id="reviewBox">
@@ -249,7 +245,21 @@ function deleteReview(Uid) {
                                         <input type="password" class="psWordIpt" id="passwordInput" placeholder="password">
                                       </div>
                                       <div class="reviewBtns">
-                                        <button type="button" class="PwConfirmBtn" onclick="confirmPassword(${Uid})">삭제</button>
+                                        <button type="button" class="PwConfirmBtn" onclick="confirmPassword(${Uid},${passWord})">삭제</button>
                                       </div>
                                     </div>`;
+}
+// SH 삭제 기능 value값이 string이길래 passWord도 string으로 형변환함
+function confirmPassword(Uid, psWord) {
+  const currentPassWord = document.getElementById("passwordInput").value;
+  console.log(currentPassWord);
+  console.log(String(psWord));
+
+  if (String(psWord) === currentPassWord) {
+    const deleteReview = reviews.filter((element) => element.Uid !== Uid);
+    localStorage.setItem("reviews", JSON.stringify(deleteReview));
+    location.reload(true);
+  } else {
+    alert("비밀번호가 올바르지 않습니다.");
+  }
 }
