@@ -1,7 +1,5 @@
-// HK 날씨 api 연동
-
 // "getJSON"이라는 이름의 함수를 정의합니다. 이 함수는 URL과 콜백 함수를 매개변수로 받습니다.
-const getJSON = function (url, callback) {
+function getJSON(url, callback) {
   // XMLHttpRequest 객체를 생성합니다.
   const xhr = new XMLHttpRequest();
 
@@ -28,20 +26,36 @@ const getJSON = function (url, callback) {
 
   // 요청을 보냅니다.
   xhr.send();
-};
+}
+
+// "displayWeather"라는 이름의 함수를 정의합니다. 이 함수는 날씨 정보를 표시합니다.
+function displayWeather(weatherData) {
+  const temperature = weatherData.main.temp;
+  const tempMax = weatherData.main.temp_max;
+  const tempMin = weatherData.main.temp_min;
+
+  // 날씨 정보를 표시할 HTML 요소를 선택합니다.
+  const weatherContainer = document.getElementById("weather-container");
+
+  // 날씨 정보를 표시할 새로운 HTML 요소를 생성합니다.
+  const weatherInfo = document.createElement("div");
+  weatherInfo.innerHTML = `현재 온도는 ${temperature}° 입니다.<br>
+  오늘의 최고기온은 ${tempMax}°, 최저기온은 ${tempMin}° 입니다.`;
+
+  // 날씨 정보를 HTML 요소에 추가합니다.
+  weatherContainer.appendChild(weatherInfo);
+}
 
 // getJSON 함수를 특정 URL과 콜백 함수와 함께 호출합니다.
 getJSON(
   "https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=422dd398517306d431dfd5cf0f9b9744&units=metric",
   function (err, data) {
-    // 오류가 있는지 확인합니다 (첫 번째 인수가 null이 아닌 경우).
     if (err !== null) {
-      // 오류 코드를 포함한 오류 메시지가 있는 경고(alert)을 표시합니다.
-      alert("예상치 못한 오류 발생." + err);
+      // 오류가 발생한 경우에 대한 처리를 수행합니다.
+      console.log("예상치 못한 오류 발생: " + err);
     } else {
-      // 데이터 객체에서 현재 온도, 최고 기온 및 최저 기온을 추출하여 경고창(alert)에 표시합니다.
-      alert(`현재 온도는 ${data.main.temp}° 입니다.
-  오늘의 최고기온은 ${data.main.temp_max}°, 최저기온은 ${data.main.temp_min}° 입니다.`);
+      // 날씨 정보를 HTML에 표시하는 함수를 호출합니다.
+      displayWeather(data);
     }
   }
 );
