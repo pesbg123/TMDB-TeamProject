@@ -4,10 +4,10 @@ function getJSON(url, callback) {
   const xhr = new XMLHttpRequest();
 
   // 지정된 URL에 대해 GET 요청을 초기화합니다.
-  xhr.open("GET", url, true);
+  xhr.open('GET', url, true);
 
   // 응답 타입을 JSON으로 설정합니다.
-  xhr.responseType = "json";
+  xhr.responseType = 'json';
 
   // "load" 이벤트에 대한 이벤트 리스너를 정의합니다. 이 이벤트는 요청이 완료되었을 때 발생합니다.
   xhr.onload = function () {
@@ -35,12 +35,12 @@ function displayWeather(weatherData) {
   const tempMin = weatherData.main.temp_min;
 
   // 날씨 정보를 표시할 HTML 요소를 선택합니다.
-  const weatherContainer = document.getElementById("weather-container");
+  const weatherContainer = document.getElementById('weather-container');
 
   // 날씨 정보를 표시할 새로운 HTML 요소를 생성합니다.
-  const weatherInfo = document.createElement("div");
-  weatherInfo.innerHTML = `현재 온도는 ${temperature}° 입니다.<br>
-  오늘의 최고기온은 ${tempMax}°, 최저기온은 ${tempMin}° 입니다.`;
+  const weatherInfo = document.getElementById('weather-container');
+  weatherInfo.innerHTML = `현재 온도: ${temperature}°<br>
+  최고기온: ${tempMax}°, 최저기온: ${tempMin}°`;
 
   // 날씨 정보를 HTML 요소에 추가합니다.
   weatherContainer.appendChild(weatherInfo);
@@ -48,11 +48,11 @@ function displayWeather(weatherData) {
 
 // getJSON 함수를 특정 URL과 콜백 함수와 함께 호출합니다.
 getJSON(
-  "https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=422dd398517306d431dfd5cf0f9b9744&units=metric",
+  'https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=422dd398517306d431dfd5cf0f9b9744&units=metric',
   function (err, data) {
     if (err !== null) {
       // 오류가 발생한 경우에 대한 처리를 수행합니다.
-      console.log("예상치 못한 오류 발생: " + err);
+      console.log('예상치 못한 오류 발생: ' + err);
     } else {
       // 날씨 정보를 HTML에 표시하는 함수를 호출합니다.
       displayWeather(data);
