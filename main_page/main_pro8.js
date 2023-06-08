@@ -34,7 +34,7 @@ const url = (movieUrl) =>
   showMovieList(movieUrl + 'api_key=' + apiKey, options);
 
 const cardsRemove = (movieUrl) => {
-  movieCardBox.textContent = '';
+  // movieCardBox.textContent = '';
   url(movieUrl);
 };
 
