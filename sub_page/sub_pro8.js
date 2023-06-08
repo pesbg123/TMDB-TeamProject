@@ -74,7 +74,7 @@ fetch(movieUrl, options)
                         <textarea id="commentIpt" class="commentIpt" placeholder="a review comment"></textarea>
                       </div>
                       <div class="reviewBtns">
-                        <button onclick="posting()" type="button" class="postBtn">Save</button>
+                        <button onclick="posting()" type="button" class="postBtn">저장</button>
                       </div>
                     </div>
                   </div>
@@ -228,7 +228,7 @@ function deleteReview(Uid, passWord) {
                                         <input type="password" class="psWordIpt" id="passwordInput" placeholder="password">
                                       </div>
                                       <div class="reviewBtns">
-                                        <button type="button" class="PwConfirmBtn" onclick="confirmPassword(${Uid},${passWord})">삭제</button>
+                                        <button type="button" class="PwConfirmBtn" onclick="confirmPassword(${Uid},${passWord})">정말로 삭제 하시겠습니까?</button>
                                       </div>
                                     </div>`;
 }
