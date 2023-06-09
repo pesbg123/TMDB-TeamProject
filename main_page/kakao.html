@@ -3,8 +3,10 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>키워드로 장소검색하고 목록으로 표출하기</title>
+    <title>지역 영화관 검색</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
         /* 지도화면 */
         .map_wrap,
         .map_wrap * {
@@ -25,7 +27,7 @@
         .map_wrap {
             position: relative;
             width: 100%;
-            height: 500px;
+            height: 1200px;
         }
 
         /* 검색창 전체*/
@@ -34,11 +36,11 @@
             top: 0;
             left: 0;
             bottom: 0;
-            width: 250px;
+            width: 500px;
             margin: 10px 0 30px 10px;
             padding: 5px;
             overflow-y: auto;
-            background: white;
+            background: black;
             z-index: 1;
             font-size: 12px;
             border-radius: 10px;
@@ -49,7 +51,7 @@
             display: block;
             height: 1px;
             border: 0;
-            border-top: 2px solid black;
+            border-top: 2px solid white;
             margin: 3px 0;
         }
 
@@ -61,7 +63,7 @@
         /* 검색 결과창구분선 */
         #placesList .item {
             position: relative;
-            border-bottom: 1px solid black;
+            border-bottom: 1px solid white;
             overflow: hidden;
             cursor: pointer;
             min-height: 65px;
@@ -71,6 +73,8 @@
         #placesList .item span {
             display: block;
             margin-top: 3px;
+            color: white;
+            font-size: 20px;
         }
 
         /* 검색결과 배경 */
@@ -83,7 +87,7 @@
 
         /* 검색결과 지번주소 */
         #placesList .info .gray {
-            color: black;
+            color: white;
         }
 
         /* 검색결과 지번아이콘 */
@@ -94,7 +98,7 @@
 
         /* 검색결과 전화번호 */
         #placesList .info .tel {
-            color: black;
+            color: white;
         }
 
         /* 검색결과 번호 아이콘 */
@@ -179,6 +183,44 @@
             display: inline-block;
             margin-right: 10px;
         }
+
+        .mapScBtn {
+            width: 100px;
+            height: 50px;
+            border-radius: 10px;
+            border: 1px solid black;
+            font-size: 25px;
+            background-color: tomato;
+            color: black;
+            font-family: 'Jua', sans-serif;
+        }
+
+        .mapScBtn:hover {
+            box-shadow: 0 200px 0 0 rgba(218, 218, 218, 0.25) inset,
+                0 200px 0 0 rgba(220, 220, 220, 0.25) inset;
+        }
+
+        .mapScIpt {
+            font-family: 'Jua', sans-serif;
+            width: 70%;
+            height: 50px;
+            margin: 10px;
+            border: none;
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .mapScIpt:focus {
+            outline: 3px solid tomato;
+            border-radius: 10px;
+        }
+
+        h5 {
+            color: white;
+            font-size: large;
+        }
     </style>
 </head>
 
@@ -189,8 +231,8 @@
             <div class="option">
                 <div>
                     <form onsubmit="searchPlaces(); return false;">
-                        <input type="text" value="" id="keyword" size="20" />
-                        <button type="submit">검색</button>
+                        <input type="text" class="mapScIpt" value="" id="keyword" size="20" placeholder="키워드를 입력하세요" />
+                        <button type="submit" class="mapScBtn">검색</button>
                     </form>
                 </div>
             </div>
@@ -222,10 +264,10 @@
         function searchPlaces() {
             var keyword = document.getElementById("keyword").value;
 
-            if (!keyword.replace(/^\s+|\s+$/g, "")) {
-                alert("키워드를 입력해주세요!");
-                return false;
-            }
+            // if (!keyword.replace(/^\s+|\s+$/g, "")) {
+            //     alert("키워드를 입력해주세요!");
+            //     return false;
+            // }
             // 검색 객체를 통해서 키워드로 장소를 검색
             ps.keywordSearch(keyword, placesSearchCB);
         }
