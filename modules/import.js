@@ -4,7 +4,7 @@ import {
   teamMembers,
   goToDomain,
   categorys,
-} from './modules/export.js'; // 로컬에선 from '/modules/export.js';
+} from '/TMDB-TeamProject/modules/export.js'; // 로컬에선 from '/modules/export.js';
 
 // footer에 있는 팀원별 버튼 클릭 이벤트 지정
 teamMembers.forEach((member) => {
