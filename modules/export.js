@@ -22,8 +22,3 @@ export const categorys = [
   { id: "toprate-category", category: "TopRated" },
   { id: "upcoming-category", category: "Upcoming" },
 ];
-
-// JH hearder Carrot Movie 클릭시 main페이지로 넘어가는 함수
-export const main = () => {
-  window.location.href = "/main_page/main_pro8.html";
-};

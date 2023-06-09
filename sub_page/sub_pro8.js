@@ -1,6 +1,3 @@
-//export에 main함수 이동
-import { main } from "../modules/export.js";
-
 // JH URL에서 id 추출
 const urlParamsJh = new URLSearchParams(window.location.search);
 const movieId = urlParamsJh.get("id");
@@ -10,7 +7,6 @@ const sub_searchBox = document.getElementById("search-box");
 const sub_searchBtn = document.getElementById("click-btn");
 const movieDetailsContainer = document.getElementById("movie-details");
 const movieupdateContainer = document.getElementById("movie-update-modal");
-const sub_title = document.getElementById("sub_title");
 // JH TMDB-API 요청에 필요한 속성을 options 상수에 할당
 const options = {
   method: "GET",
@@ -211,6 +207,11 @@ const getRatingColor = (rate) => {
   } else {
     return "red";
   }
+};
+
+// JH hearder Carrot Movie 클릭시 main페이지로 넘어가는 함수
+const main = () => {
+  window.location.href = "/main_page/main_pro8.html";
 };
 
 // JH html요소에 이벤트 지정

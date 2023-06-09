@@ -1,6 +1,3 @@
-//export에 main함수 이동
-import { main } from "../modules/export.js";
-
 // JH TMDB-API 요청에 필요한 속성을 options 상수에 할당
 const options = {
   method: "GET",
@@ -162,6 +159,11 @@ searchBox.addEventListener("keypress", (event) => {
     searchMovie(searchBoxValue);
   }
 });
+
+// JH hearder Carrot Movie 클릭시 main페이지로 넘어가는 함수
+const main = () => {
+  window.location.href = "/main_page/main_pro8.html";
+};
 
 // JH html요소에 이벤트 지정
 mainH1.addEventListener("click", main);
