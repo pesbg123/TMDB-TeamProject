@@ -1,9 +1,10 @@
+// export.js에서 export로 내보낸 것들을 import로 가져옴
 import {
   openGitHubProfile,
   teamMembers,
   goToDomain,
   categorys,
-} from '/modules/gitHub_export.js';
+} from '/modules/export.js';
 
 // footer에 있는 팀원별 버튼 클릭 이벤트 지정
 teamMembers.forEach((member) => {
