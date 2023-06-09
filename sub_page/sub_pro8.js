@@ -211,7 +211,7 @@ const getRatingColor = (rate) => {
 
 // JH hearder Carrot Movie 클릭시 main페이지로 넘어가는 함수
 const main = () => {
-  window.location.href = '/TMDB-TeamProject/main_page/main_pro8.html';
+  window.location.href = './main_page/main_pro8.html';
 };
 
 // JH html요소에 이벤트 지정
@@ -229,7 +229,7 @@ sub_searchBox.addEventListener('keypress', (event) => {
 // 메인 페이지랑 똑같습니다.
 function renderMainpage() {
   const sub_movieTitle = sub_searchBox.value;
-  return (window.location.href = `/TMDB-TeamProject/main_page/main_pro8.html?title=${sub_movieTitle}`);
+  return (window.location.href = `./main_page/main_pro8.html?title=${sub_movieTitle}`);
 }
 
 // SH 삭제 기능을 위한 모달창

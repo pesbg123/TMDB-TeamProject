@@ -14,7 +14,7 @@ export const teamMembers = [
 
 // 상세페이지에서 카테고리들로 넘어가는 함수
 export const goToDomain = (domain) =>
-  (window.location.href = `/TMDB-TeamProject/main_page/main_pro8.html?domain=${domain}`);
+  (window.location.href = `./main_page/main_pro8.html?domain=${domain}`);
 
 export const categorys = [
   { id: 'popular-category', category: 'Popular' },

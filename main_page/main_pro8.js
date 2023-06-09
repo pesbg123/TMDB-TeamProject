@@ -99,7 +99,7 @@ const clickCard = (movieId) => alert(`id: ${movieId}`);
 
 // JH 상세페이지로 넘어가는 함수
 const clickDesc = (movieId) =>
-  (window.location.href = `/TMDB-TeamProject/sub_page/sub_pro8.html?id=${movieId}`);
+  (window.location.href = `./sub_page/sub_pro8.html?id=${movieId}`);
 
 // SH 매개변수로 searchBoxValue를 받아와서 searchMovie가 실행됩니다.
 const searchMovie = (searchBoxValue) => {
@@ -162,7 +162,7 @@ searchBox.addEventListener('keypress', (event) => {
 
 // JH hearder Carrot Movie 클릭시 main페이지로 넘어가는 함수
 const main = () => {
-  window.location.href = '/TMDB-TeamProject/main_page/main_pro8.html';
+  window.location.href = './main_page/main_pro8.html';
 };
 
 // JH html요소에 이벤트 지정
