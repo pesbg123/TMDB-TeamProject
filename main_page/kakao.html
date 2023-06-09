@@ -222,7 +222,7 @@
         }
 
         /* 검색 결과 장소 이름 글씨 색 */
-        h5 {
+        .placeNm {
             color: white;
             font-size: 25px;
         }
@@ -342,7 +342,7 @@
                     (index + 1) +
                     '"></span>' +
                     '<div class="info">' +
-                    "<h5>" +
+                    `<h5 class="placeNm">` +
                     places.place_name +
                     "</h5>";
             if (places.road_address_name) {
