@@ -211,7 +211,7 @@ const getRatingColor = (rate) => {
 
 // JH hearder Carrot Movie 클릭시 main페이지로 넘어가는 함수
 const main = () => {
-  window.location.href = '/main_page/main_pro8.html';
+  window.location.href = '/TMDB-TeamProject/main_page/main_pro8.html';
 };
 
 // JH html요소에 이벤트 지정
