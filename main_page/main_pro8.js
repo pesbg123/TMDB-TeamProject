@@ -8,7 +8,7 @@ const options = {
   },
 };
 
-// SH 상세페이지 검색 url
+// SH 상세페이지 검색 url받아오기
 const urlParamsSH = new URLSearchParams(window.location.search);
 const sub_movieTitle = urlParamsSH.get('title');
 
